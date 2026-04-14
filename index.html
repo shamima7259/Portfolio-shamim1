@@ -65,13 +65,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- html2pdf Library for generating CV -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <style>
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            transition: background-color 0.5s ease, color 0.5s ease;
-            overflow-x: hidden;
-        }
+        body { font-family: 'Poppins', sans-serif; transition: background-color 0.5s ease, color 0.5s ease; overflow-x: hidden; }
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 10px; }
@@ -79,56 +78,36 @@
         ::-webkit-scrollbar-thumb:hover { background: #c084fc; }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s ease;
+            background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05); transition: all 0.4s ease;
         }
         .dark .glass-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         .glass-card:hover { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
         .dark .glass-card:hover { border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 20px 50px rgba(168, 85, 247, 0.15); }
 
-        .img-presenter {
-            background: rgba(0, 0, 0, 0.03);
-            border-radius: 1.5rem;
-            display: flex; align-items: center; justify-content: center;
-            padding: 0.5rem; transition: background 0.5s ease;
-        }
+        .img-presenter { background: rgba(0, 0, 0, 0.03); border-radius: 1.5rem; display: flex; align-items: center; justify-content: center; padding: 0.5rem; transition: background 0.5s ease; }
         .dark .img-presenter { background: rgba(0, 0, 0, 0.4); box-shadow: inset 0 4px 30px rgba(0,0,0,0.6); }
 
-        .animate-gradient-text {
-            background-size: 200% auto;
-            color: transparent;
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
+        .animate-gradient-text { background-size: 200% auto; color: transparent; -webkit-background-clip: text; background-clip: text; }
 
         .swiper-pagination-bullet { background: #94a3b8 !important; opacity: 0.5 !important; transition: 0.3s; width: 10px !important; height: 10px !important; }
         .swiper-pagination-bullet-active { background: #22d3ee !important; width: 32px !important; border-radius: 8px !important; opacity: 1 !important; }
 
-        /* Form Input Styles */
-        .glass-input {
-            background: rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            color: #1e293b;
-        }
-        .dark .glass-input {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #f1f5f9;
-        }
+        .glass-input { background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.5); color: #1e293b; }
+        .dark .glass-input { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); color: #f1f5f9; }
         .glass-input:focus { outline: none; border-color: #c084fc; box-shadow: 0 0 15px rgba(192, 132, 252, 0.4); }
+
+        /* Hidden Template for PDF Generation */
+        #cv-pdf-template {
+            position: absolute; left: -9999px; top: -9999px; width: 800px; background: white; color: black; font-family: 'Helvetica', 'Arial', sans-serif; padding: 50px;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-darkbg dark:text-slate-200 antialiased relative min-h-screen">
 
-    <!-- Fluid Video-Like Background -->
+    <!-- Fluid Background -->
     <div class="fixed top-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-fuchsia-400/30 dark:bg-purple-900/40 rounded-full blur-[150px] pointer-events-none z-[-1] animate-blob mix-blend-multiply dark:mix-blend-screen"></div>
     <div class="fixed bottom-[-20%] right-[-10%] w-[70vw] h-[70vw] bg-cyan-400/30 dark:bg-cyan-900/30 rounded-full blur-[150px] pointer-events-none z-[-1] animate-blob-reverse mix-blend-multiply dark:mix-blend-screen" style="animation-delay: 2s;"></div>
     <div class="fixed top-[20%] left-[20%] w-[50vw] h-[50vw] bg-pink-400/20 dark:bg-indigo-900/30 rounded-full blur-[150px] pointer-events-none z-[-1] animate-blob-fast mix-blend-multiply dark:mix-blend-screen" style="animation-delay: 4s;"></div>
@@ -145,21 +124,17 @@
         <!-- Hero Section -->
         <header class="glass-card rounded-[3rem] p-8 md:p-16 mb-16 flex flex-col md:flex-row items-center gap-10 md:gap-14 relative overflow-hidden">
             
-            <!-- Profile Image -->
             <div class="relative group shrink-0 mt-4 md:mt-0">
                 <div class="absolute inset-[-20px] bg-gradient-to-tr from-purple-600 via-pink-500 to-cyan-500 rounded-full blur-3xl opacity-60 dark:opacity-80 animate-glow-pulse group-hover:opacity-100 transition duration-500"></div>
                 <img src="profile.jpg" alt="Md Samim" class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full object-cover border-[6px] border-white/80 dark:border-white/10 shadow-2xl z-10 transform group-hover:scale-105 transition duration-500">
             </div>
             
             <div class="text-center md:text-left flex-1 z-10 w-full overflow-hidden">
-                
-                <!-- Availability Badge -->
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm font-bold mb-6 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span>
                     Available for Freelance Work
                 </div>
 
-                <!-- Animated Gradient Name (Fixed for Mobile) -->
                 <h1 class="text-[11vw] sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-3 animate-gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-cyan-500 dark:from-purple-400 dark:via-fuchsia-400 dark:to-cyan-400 drop-shadow-lg whitespace-nowrap overflow-hidden text-ellipsis">
                     MD SAMIM
                 </h1>
@@ -176,17 +151,14 @@
                     <a href="https://www.behance.net/mdsamim91" target="_blank" class="px-8 py-3.5 md:px-10 md:py-4 text-base md:text-lg bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold rounded-full shadow-[0_10px_30px_rgba(168,85,247,0.4)] hover:shadow-[0_10px_40px_rgba(34,211,238,0.6)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
                         <i class="fab fa-behance text-2xl"></i> Behance
                     </a>
-                    <a href="#hire-me" class="px-8 py-3.5 md:px-10 md:py-4 text-base md:text-lg bg-white/50 dark:bg-white/10 border border-slate-300 dark:border-white/20 hover:bg-white/80 dark:hover:bg-white/20 text-slate-900 dark:text-white font-bold rounded-full hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
-                        <i class="fas fa-download text-xl"></i> Download CV
-                    </a>
-                </div>
-
-                <!-- Circular Social Links -->
-                <div class="flex items-center justify-center md:justify-start gap-4 mt-8">
-                    <a href="https://wa.me/8801786537259" target="_blank" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-green-600 dark:text-green-400 hover:scale-110 hover:text-green-500 transition-all shadow-lg text-2xl"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" target="_blank" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-blue-600 dark:text-blue-400 hover:scale-110 hover:text-blue-500 transition-all shadow-lg text-2xl"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" target="_blank" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-pink-600 dark:text-pink-400 hover:scale-110 hover:text-pink-500 transition-all shadow-lg text-2xl"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-blue-700 dark:text-blue-500 hover:scale-110 hover:text-blue-400 transition-all shadow-lg text-2xl"><i class="fab fa-linkedin-in"></i></a>
+                    <!-- Generate PDF JS Function Call -->
+                    <button onclick="downloadCV()" class="px-8 py-3.5 md:px-10 md:py-4 text-base md:text-lg bg-white/50 dark:bg-white/10 border border-slate-300 dark:border-white/20 hover:bg-white/80 dark:hover:bg-white/20 text-slate-900 dark:text-white font-bold rounded-full hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
+                        <i class="fas fa-download text-xl" id="dl-icon"></i> <span id="dl-text">Download CV</span>
+                    </button>
+                    
+                    <!-- Updated Social Links -->
+                    <a href="https://wa.me/8801786537259" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full glass-card flex items-center justify-center text-green-600 dark:text-green-400 hover:scale-110 hover:text-green-500 transition-all shadow-lg text-2xl"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/shamimahmad259/" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full glass-card flex items-center justify-center text-blue-600 dark:text-blue-400 hover:scale-110 hover:text-blue-500 transition-all shadow-lg text-2xl"><i class="fab fa-facebook-f"></i></a>
                 </div>
 
             </div>
@@ -194,16 +166,13 @@
 
         <!-- Main CV Grid -->
         <main class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-24">
-            <!-- Left Column -->
             <div class="space-y-10 lg:col-span-1">
-                <!-- Objective -->
                 <section class="glass-card rounded-[2.5rem] p-10 hover:-translate-y-2">
                     <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-4 uppercase tracking-wider"><div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center"><i class="fas fa-bullseye text-cyan-600 dark:text-cyan-400 text-xl"></i></div> Objective</h2>
                     <p class="text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300 text-justify font-medium">
                         Motivated creative professional with a strong foundation in graphic design, microstock contribution, and digital media. Expanding my skills in video editing, Meta ads, and generative AI. Combining discipline from extensive Islamic studies with creative passion.
                     </p>
                 </section>
-                <!-- Skills -->
                 <section class="glass-card rounded-[2.5rem] p-10 hover:-translate-y-2">
                     <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-4 uppercase tracking-wider"><div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><i class="fas fa-gem text-purple-600 dark:text-purple-400 text-xl"></i></div> Core Skills</h2>
                     <div class="space-y-6 text-base md:text-lg font-medium">
@@ -220,9 +189,7 @@
                 </section>
             </div>
 
-            <!-- Right Column -->
             <div class="space-y-10 lg:col-span-2">
-                <!-- Experience -->
                 <section class="glass-card rounded-[2.5rem] p-10 md:p-12 hover:-translate-y-2">
                     <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-10 flex items-center gap-5 tracking-wide"><div class="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center"><i class="fas fa-briefcase text-purple-600 dark:text-purple-400 text-2xl"></i></div> Professional Experience</h2>
                     
@@ -247,7 +214,6 @@
                     </div>
                 </section>
 
-                <!-- Education -->
                 <section class="glass-card rounded-[2.5rem] p-10 md:p-12 hover:-translate-y-2">
                     <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-10 flex items-center gap-5 tracking-wide"><div class="w-14 h-14 rounded-full bg-cyan-500/20 flex items-center justify-center"><i class="fas fa-graduation-cap text-cyan-600 dark:text-cyan-400 text-2xl"></i></div> Education & Background</h2>
                     
@@ -256,7 +222,11 @@
                             <h4 class="text-slate-900 dark:text-slate-100 font-bold text-xl mb-3">Dept. of Ifta (Islamic Jurisprudence)</h4>
                             <p class="text-slate-700 dark:text-slate-400 text-base font-medium leading-relaxed">Markazur Rashid Lil Fikril Islami Dhaka<br><span class="text-purple-700 dark:text-purple-400 mt-3 font-bold inline-block bg-purple-500/10 px-3 py-1.5 rounded-lg">Currently Enrolled</span></p>
                         </div>
-                        <div class="bg-white/60 dark:bg-white/[0.03] p-8 rounded-[2rem] border border-slate-300 dark:border-white/10 hover:border-cyan-400 dark:hover:border-cyan-500/50 hover:shadow-2xl transition-all duration-300 md:col-span-2 flex items-center gap-6">
+                        <div class="bg-white/60 dark:bg-white/[0.03] p-8 rounded-[2rem] border border-slate-300 dark:border-white/10 hover:border-cyan-400 dark:hover:border-cyan-500/50 hover:shadow-2xl transition-all duration-300">
+                            <h4 class="text-slate-900 dark:text-slate-100 font-bold text-xl mb-3">Dawra-e-Hadith (Master's Equivalent)</h4>
+                            <p class="text-slate-700 dark:text-slate-400 text-base font-medium leading-relaxed">Jamia Islamia Darul Uloom Madania<br><span class="text-cyan-700 dark:text-cyan-400 mt-3 font-bold inline-block bg-cyan-500/10 px-3 py-1.5 rounded-lg">Expected 2026</span></p>
+                        </div>
+                        <div class="bg-white/60 dark:bg-white/[0.03] p-8 rounded-[2rem] border border-slate-300 dark:border-white/10 hover:border-purple-400 dark:hover:border-purple-500/50 hover:shadow-2xl transition-all duration-300 md:col-span-2 flex items-center gap-6">
                             <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-purple-600 to-cyan-500 flex items-center justify-center shrink-0 shadow-xl">
                                 <i class="fas fa-book-quran text-4xl text-white"></i>
                             </div>
@@ -270,8 +240,7 @@
             </div>
         </main>
 
-        <!-- SECTION 1: Graphic Design Portfolio Slider -->
-        <!-- Note: We apply animate-gradient-text to the WHOLE heading now -->
+        <!-- Hidden Portfolios handled by auto-loader -->
         <section class="mb-32 hidden" id="section-graphics">
             <div class="text-center mb-14">
                 <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-md animate-gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-cyan-500 dark:from-purple-400 dark:via-pink-400 dark:to-cyan-400 pb-2">
@@ -279,7 +248,6 @@
                 </h2>
                 <p class="text-slate-700 dark:text-slate-300 font-medium text-lg mt-4">High-quality vectors, illustrations & social media designs</p>
             </div>
-            
             <div class="glass-card rounded-[3rem] p-8 md:p-12 relative">
                 <div class="swiper swiper-graphics">
                     <div class="swiper-wrapper pb-20" id="graphics-wrapper"></div>
@@ -288,7 +256,6 @@
             </div>
         </section>
 
-        <!-- SECTION 2: Video Editing Slider -->
         <section class="mb-32 hidden" id="section-video">
             <div class="text-center mb-14">
                 <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-md animate-gradient-text bg-gradient-to-r from-cyan-600 via-blue-500 to-purple-500 dark:from-cyan-400 dark:via-blue-400 dark:to-purple-400 pb-2">
@@ -296,7 +263,6 @@
                 </h2>
                 <p class="text-slate-700 dark:text-slate-300 font-medium text-lg mt-4">Promotional ads, Islamic lectures & social media reels</p>
             </div>
-
             <div class="glass-card rounded-[3rem] p-8 md:p-12 relative">
                 <div class="swiper swiper-video">
                     <div class="swiper-wrapper pb-20" id="video-wrapper"></div>
@@ -305,7 +271,6 @@
             </div>
         </section>
 
-        <!-- SECTION 3: Personal Photo Gallery Slider -->
         <section class="mb-32 hidden" id="section-personal">
             <div class="text-center mb-14">
                 <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-md animate-gradient-text bg-gradient-to-r from-pink-600 via-rose-500 to-purple-600 dark:from-pink-400 dark:via-rose-400 dark:to-purple-400 pb-2">
@@ -313,7 +278,6 @@
                 </h2>
                 <p class="text-slate-700 dark:text-slate-300 font-medium text-lg mt-4">Glimpses of my life & behind the scenes</p>
             </div>
-
             <div class="glass-card rounded-[3rem] p-8 md:p-12 relative">
                 <div class="swiper swiper-personal">
                     <div class="swiper-wrapper pb-20" id="personal-wrapper"></div>
@@ -322,15 +286,14 @@
             </div>
         </section>
 
-        <!-- SECTION 4: HIRE ME / CONTACT FORM -->
+        <!-- HIRE ME / CONTACT FORM -->
+        <!-- Update: Action link added to send email directly via FormSubmit -->
         <section id="hire-me" class="mb-20">
             <div class="glass-card rounded-[3rem] p-10 md:p-16 relative overflow-hidden">
-                <!-- Background glow inside card -->
                 <div class="absolute top-0 right-0 w-[300px] h-[300px] bg-purple-500/20 rounded-full blur-[80px] pointer-events-none"></div>
                 <div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-cyan-500/20 rounded-full blur-[80px] pointer-events-none"></div>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 relative z-10">
-                    <!-- Text Info -->
                     <div>
                         <h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-6 animate-gradient-text bg-gradient-to-r from-purple-600 to-cyan-500 dark:from-purple-400 dark:to-cyan-400 pb-2">
                             Let's Work Together!
@@ -357,26 +320,30 @@
                         </div>
                     </div>
 
-                    <!-- The Form -->
                     <div class="glass-card p-8 md:p-10 rounded-[2.5rem] shadow-2xl">
-                        <form action="mailto:Shamimahmad7259@gmail.com" method="post" enctype="text/plain" class="space-y-6">
+                        <!-- Direct Email Form Setup -->
+                        <form action="https://formsubmit.co/Shamimahmad7259@gmail.com" method="POST" class="space-y-6">
+                            <!-- Optional Settings for FormSubmit -->
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_subject" value="New message from Portfolio Client!">
+                            
                             <div>
                                 <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Your Name</label>
-                                <input type="text" placeholder="John Doe" class="w-full px-5 py-4 rounded-xl glass-input font-medium transition-all" required>
+                                <input type="text" name="name" placeholder="John Doe" class="w-full px-5 py-4 rounded-xl glass-input font-medium transition-all" required>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
-                                    <input type="email" placeholder="john@example.com" class="w-full px-5 py-4 rounded-xl glass-input font-medium transition-all" required>
+                                    <input type="email" name="email" placeholder="john@example.com" class="w-full px-5 py-4 rounded-xl glass-input font-medium transition-all" required>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Phone Number</label>
-                                    <input type="tel" placeholder="+880..." class="w-full px-5 py-4 rounded-xl glass-input font-medium transition-all">
+                                    <input type="tel" name="phone" placeholder="+880..." class="w-full px-5 py-4 rounded-xl glass-input font-medium transition-all" required>
                                 </div>
                             </div>
                             <div>
                                 <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Your Message</label>
-                                <textarea rows="4" placeholder="Tell me about your project..." class="w-full px-5 py-4 rounded-xl glass-input font-medium transition-all resize-none" required></textarea>
+                                <textarea name="message" rows="4" placeholder="Tell me about your project..." class="w-full px-5 py-4 rounded-xl glass-input font-medium transition-all resize-none" required></textarea>
                             </div>
                             <button type="submit" class="w-full py-4 text-lg bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold rounded-xl shadow-[0_10px_30px_rgba(168,85,247,0.4)] hover:shadow-[0_10px_40px_rgba(34,211,238,0.6)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3">
                                 <i class="fas fa-paper-plane"></i> Send Message
@@ -396,20 +363,87 @@
 
     </div>
 
+    <!-- Hidden HTML Template for generating PDF CV -->
+    <div id="cv-pdf-template">
+        <h1 style="text-align: center; font-size: 28px; margin-bottom: 5px; color: #111;">MD SAMIM</h1>
+        <p style="text-align: center; font-size: 14px; margin-bottom: 25px; color: #444; border-bottom: 2px solid #ddd; padding-bottom: 15px;">
+            <strong>Graphic Designer & Video Editor</strong><br>
+            Homna, Comilla | 01786537259 | Shamimahmad7259@gmail.com | Behance: behance.net/mdsamim91
+        </p>
+
+        <h2 style="font-size: 18px; color: #111; margin-bottom: 8px;">CAREER OBJECTIVE</h2>
+        <p style="font-size: 13px; color: #444; line-height: 1.6; margin-bottom: 20px;">
+            Motivated creative professional with a strong foundation in graphic design, microstock contribution, and digital media. As a Govt-recognized freelancer, I am actively expanding my skills in video editing, Meta ads, and generative AI. Combining discipline from extensive Islamic studies with creative passion, I aim to add significant value to a dynamic organization.
+        </p>
+
+        <h2 style="font-size: 18px; color: #111; margin-bottom: 8px;">PROFESSIONAL EXPERIENCE</h2>
+        <div style="margin-bottom: 20px;">
+            <p style="font-size: 14px; margin: 0;"><strong>Freelance Graphic Designer</strong></p>
+            <p style="font-size: 13px; color: #666; margin: 2px 0 8px 0;">Self-Employed | 2022 – Present</p>
+            <ul style="font-size: 13px; color: #444; padding-left: 20px; line-height: 1.5; margin: 0;">
+                <li>Designing high-quality vectors for platforms like Freepik & Shutterstock.</li>
+                <li>Successfully generating foreign remittance by selling digital assets to global clients.</li>
+                <li>Registered Freelancer, Govt. of Bangladesh (ID: F126195488205).</li>
+            </ul>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <p style="font-size: 14px; margin: 0;"><strong>Trainee, Creative Dept.</strong></p>
+            <p style="font-size: 13px; color: #666; margin: 2px 0 8px 0;">As-Sunnah Skill Development Institute | Present</p>
+            <ul style="font-size: 13px; color: #444; padding-left: 20px; line-height: 1.5; margin: 0;">
+                <li>Receiving hands-on training in Graphic Design, Video Editing, Meta Ads, and AI Tools.</li>
+                <li>Registered candidate for the upcoming NSDA Govt. Certification Assessment.</li>
+            </ul>
+        </div>
+
+        <h2 style="font-size: 18px; color: #111; margin-bottom: 8px;">EDUCATION & ISLAMIC ACADEMIC BACKGROUND</h2>
+        <ul style="font-size: 13px; color: #444; padding-left: 20px; line-height: 1.6; margin-bottom: 20px;">
+            <li><strong>Dept. of Ifta (Islamic Jurisprudence):</strong> Markazur Rashid Lil Fikril Islami Dhaka (Currently Enrolled)</li>
+            <li><strong>Dawra-e-Hadith (Master's Equivalent):</strong> Jamia Islamia Darul Uloom Madania (Expected 2026)</li>
+            <li><strong>Hifz-ul-Quran:</strong> Successfully Completed in 2017</li>
+        </ul>
+
+        <h2 style="font-size: 18px; color: #111; margin-bottom: 8px;">SKILLS & LANGUAGES</h2>
+        <div style="font-size: 13px; color: #444; line-height: 1.6;">
+            <p style="margin: 0;"><strong>Multimedia:</strong> Adobe Illustrator, Photoshop, Video Editing.</p>
+            <p style="margin: 0;"><strong>Digital Skills:</strong> Generative AI (Prompting), Meta Marketing.</p>
+            <p style="margin: 0;"><strong>Soft Skills:</strong> Highly Disciplined, Strong Focus, Quick Learner.</p>
+            <p style="margin-top: 10px;"><strong>Languages:</strong> Bengali (Native), Arabic (Proficient), English (Working Proficiency).</p>
+        </div>
+    </div>
+
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // --- Theme Toggle ---
         function toggleTheme() {
             const htmlTag = document.documentElement;
             htmlTag.classList.toggle('dark');
             localStorage.theme = htmlTag.classList.contains('dark') ? 'dark' : 'light';
         }
 
-        // --- SMART DYNAMIC IMAGE LOADER ---
-        // This script checks if images actually exist before adding them.
-        // It ensures NO empty slides will ever show up.
-        
+        // PDF Generation Function
+        function downloadCV() {
+            const element = document.getElementById('cv-pdf-template');
+            const icon = document.getElementById('dl-icon');
+            const text = document.getElementById('dl-text');
+            
+            // Change button state
+            icon.className = "fas fa-spinner fa-spin text-xl";
+            text.innerText = "Generating...";
+
+            const opt = {
+                margin:       0.5,
+                filename:     'MD_SAMIM_CV.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            // Generate PDF
+            html2pdf().set(opt).from(element).save().then(() => {
+                icon.className = "fas fa-download text-xl";
+                text.innerText = "Download CV";
+            });
+        }
+
         async function loadImages() {
             const sections =[
                 { id: 'graphics-wrapper', sectionId: 'section-graphics', prefix: 'gd', isVideo: false },
@@ -421,11 +455,8 @@
                 const wrapper = document.getElementById(sec.id);
                 let validImagesCount = 0;
 
-                // Check from 1 to 20 sequentially
                 for(let i=1; i<=20; i++) {
                     const imgUrl = `${sec.prefix}${i}.jpg`;
-                    
-                    // Promise to check if image loads successfully
                     const exists = await new Promise(resolve => {
                         const img = new Image();
                         img.onload = () => resolve(true);
@@ -435,7 +466,6 @@
 
                     if(exists) {
                         validImagesCount++;
-                        // Generate HTML based on section type
                         if(sec.isVideo) {
                             wrapper.innerHTML += `
                             <div class="swiper-slide">
@@ -459,35 +489,23 @@
                                 </div>
                             </div>`;
                         }
-                    } else {
-                        // If image doesn't exist, stop checking further numbers for this section to save time
-                        // (Assuming you upload them sequentially: 1, 2, 3...)
-                        break; 
-                    }
+                    } else break; 
                 }
 
-                // If at least 1 image was found, show the section and initialize Swiper
                 if(validImagesCount > 0) {
                     document.getElementById(sec.sectionId).classList.remove('hidden');
-                    
                     const swiperConfig = {
-                        loop: validImagesCount > 3, // Only loop if there are enough slides
+                        loop: validImagesCount > 3,
                         autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
                         pagination: { el: `.swiper-pagination-${sec.prefix === 'photo' ? 'personal' : (sec.prefix === 'gd' ? 'graphics' : 'video')}`, clickable: true },
                     };
 
-                    if(sec.prefix === 'video') {
-                        new Swiper(".swiper-video", { ...swiperConfig, breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 40 } } });
-                    } else if(sec.prefix === 'gd') {
-                        new Swiper(".swiper-graphics", { ...swiperConfig, breakpoints: { 640: { slidesPerView: 1 }, 1024: { slidesPerView: 2, spaceBetween: 40 } } });
-                    } else {
-                        new Swiper(".swiper-personal", { ...swiperConfig, autoplay: { delay: 4000, disableOnInteraction: false, reverseDirection: true, pauseOnMouseEnter: true }, breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 40 } } });
-                    }
+                    if(sec.prefix === 'video') new Swiper(".swiper-video", { ...swiperConfig, breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 40 } } });
+                    else if(sec.prefix === 'gd') new Swiper(".swiper-graphics", { ...swiperConfig, breakpoints: { 640: { slidesPerView: 1 }, 1024: { slidesPerView: 2, spaceBetween: 40 } } });
+                    else new Swiper(".swiper-personal", { ...swiperConfig, autoplay: { delay: 4000, disableOnInteraction: false, reverseDirection: true, pauseOnMouseEnter: true }, breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 40 } } });
                 }
             }
         }
-
-        // Run the smart loader as soon as the page opens
         loadImages();
     </script>
 </body>
