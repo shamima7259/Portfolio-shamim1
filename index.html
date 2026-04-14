@@ -53,6 +53,7 @@
             }
         }
 
+        // Theme Checker
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
@@ -60,6 +61,7 @@
         }
     </script>
     
+    <!-- Fonts, Icons, Swiper CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -70,7 +72,6 @@
             transition: background-color 0.5s ease, color 0.5s ease;
             overflow-x: hidden;
         }
-        
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 10px; }
@@ -78,7 +79,7 @@
         ::-webkit-scrollbar-thumb:hover { background: #c084fc; }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.6);
@@ -90,28 +91,16 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
-        .glass-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        .dark .glass-card:hover {
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 50px rgba(168, 85, 247, 0.15);
-        }
+        .glass-card:hover { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
+        .dark .glass-card:hover { border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 20px 50px rgba(168, 85, 247, 0.15); }
 
         .img-presenter {
             background: rgba(0, 0, 0, 0.03);
             border-radius: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem;
-            transition: background 0.5s ease;
+            display: flex; align-items: center; justify-content: center;
+            padding: 0.5rem; transition: background 0.5s ease;
         }
-        .dark .img-presenter {
-            background: rgba(0, 0, 0, 0.4);
-            box-shadow: inset 0 4px 30px rgba(0,0,0,0.6);
-        }
+        .dark .img-presenter { background: rgba(0, 0, 0, 0.4); box-shadow: inset 0 4px 30px rgba(0,0,0,0.6); }
 
         .animate-gradient-text {
             background-size: 200% auto;
@@ -122,9 +111,22 @@
 
         .swiper-pagination-bullet { background: #94a3b8 !important; opacity: 0.5 !important; transition: 0.3s; width: 10px !important; height: 10px !important; }
         .swiper-pagination-bullet-active { background: #22d3ee !important; width: 32px !important; border-radius: 8px !important; opacity: 1 !important; }
+
+        /* Form Input Styles */
+        .glass-input {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #1e293b;
+        }
+        .dark .glass-input {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f1f5f9;
+        }
+        .glass-input:focus { outline: none; border-color: #c084fc; box-shadow: 0 0 15px rgba(192, 132, 252, 0.4); }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800 dark:bg-darkbg dark:text-slate-200 antialiased relative min-h-screen">
+<body class="bg-slate-50 text-slate-800 dark:bg-darkbg dark:text-slate-200 antialiased relative min-h-screen">
 
     <!-- Fluid Video-Like Background -->
     <div class="fixed top-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-fuchsia-400/30 dark:bg-purple-900/40 rounded-full blur-[150px] pointer-events-none z-[-1] animate-blob mix-blend-multiply dark:mix-blend-screen"></div>
@@ -132,55 +134,77 @@
     <div class="fixed top-[20%] left-[20%] w-[50vw] h-[50vw] bg-pink-400/20 dark:bg-indigo-900/30 rounded-full blur-[150px] pointer-events-none z-[-1] animate-blob-fast mix-blend-multiply dark:mix-blend-screen" style="animation-delay: 4s;"></div>
 
     <!-- Theme Toggle -->
-    <button onclick="toggleTheme()" class="fixed top-8 right-8 z-50 p-4 w-14 h-14 rounded-full glass-card hover:scale-110 active:scale-95 flex items-center justify-center group cursor-pointer shadow-xl">
-        <i id="theme-icon-light" class="fas fa-sun text-amber-500 text-2xl hidden dark:block group-hover:rotate-45 transition-transform duration-500"></i>
-        <i id="theme-icon-dark" class="fas fa-moon text-indigo-600 text-2xl block dark:hidden group-hover:-rotate-12 transition-transform duration-500"></i>
+    <button onclick="toggleTheme()" class="fixed top-6 right-6 md:top-8 md:right-8 z-50 p-4 w-12 h-12 md:w-14 md:h-14 rounded-full glass-card hover:scale-110 active:scale-95 flex items-center justify-center group cursor-pointer shadow-xl">
+        <i id="theme-icon-light" class="fas fa-sun text-amber-500 text-xl md:text-2xl hidden dark:block group-hover:rotate-45 transition-transform duration-500"></i>
+        <i id="theme-icon-dark" class="fas fa-moon text-indigo-600 text-xl md:text-2xl block dark:hidden group-hover:-rotate-12 transition-transform duration-500"></i>
     </button>
 
-    <!-- Main Container (Expanded Width to fill screen) -->
-    <div class="max-w-[1500px] w-[95%] mx-auto py-20">
+    <!-- Main Container -->
+    <div class="max-w-[1500px] w-[95%] mx-auto py-16 md:py-20">
 
         <!-- Hero Section -->
-        <header class="glass-card rounded-[3rem] p-10 md:p-16 mb-16 flex flex-col md:flex-row items-center gap-14 relative overflow-hidden">
-            <div class="relative group shrink-0">
-                <div class="absolute inset-[-20px] bg-gradient-to-tr from-purple-600 via-pink-500 to-cyan-500 rounded-full blur-3xl opacity-50 dark:opacity-70 animate-glow-pulse group-hover:opacity-100 transition duration-500"></div>
-                <img src="profile.jpg" alt="Md Samim" class="relative w-56 h-56 md:w-64 md:h-64 rounded-full object-cover border-[6px] border-white/50 dark:border-white/10 shadow-2xl z-10 transform group-hover:scale-105 transition duration-500">
+        <header class="glass-card rounded-[3rem] p-8 md:p-16 mb-16 flex flex-col md:flex-row items-center gap-10 md:gap-14 relative overflow-hidden">
+            
+            <!-- Profile Image -->
+            <div class="relative group shrink-0 mt-4 md:mt-0">
+                <div class="absolute inset-[-20px] bg-gradient-to-tr from-purple-600 via-pink-500 to-cyan-500 rounded-full blur-3xl opacity-60 dark:opacity-80 animate-glow-pulse group-hover:opacity-100 transition duration-500"></div>
+                <img src="profile.jpg" alt="Md Samim" class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full object-cover border-[6px] border-white/80 dark:border-white/10 shadow-2xl z-10 transform group-hover:scale-105 transition duration-500">
             </div>
             
-            <div class="text-center md:text-left flex-1 z-10">
-                <!-- Animated Gradient Name -->
-                <h1 class="text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-4 animate-gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-cyan-500 dark:from-purple-400 dark:via-fuchsia-400 dark:to-cyan-400 drop-shadow-lg">
-                    MD SAMIM
-                </h1>
-                <p class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-900 dark:from-slate-100 dark:to-slate-300 text-transparent bg-clip-text mb-8">Graphic Designer & Video Editor</p>
+            <div class="text-center md:text-left flex-1 z-10 w-full overflow-hidden">
                 
-                <div class="flex flex-wrap justify-center md:justify-start gap-8 text-base md:text-lg font-semibold text-slate-700 dark:text-slate-300 mb-10">
-                    <span class="flex items-center gap-3 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"><i class="fas fa-map-marker-alt text-cyan-600 dark:text-cyan-400 text-xl"></i> Homna, Comilla</span>
-                    <span class="flex items-center gap-3 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"><i class="fas fa-phone text-purple-600 dark:text-purple-400 text-xl"></i> 01786537259, 01690081808</span>
-                    <a href="mailto:Shamimahmad7259@gmail.com" class="flex items-center gap-3 hover:text-blue-600 dark:hover:text-white transition-colors duration-300"><i class="fas fa-envelope text-blue-600 dark:text-cyan-400 text-xl"></i> Shamimahmad7259@gmail.com</a>
+                <!-- Availability Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm font-bold mb-6 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span>
+                    Available for Freelance Work
                 </div>
 
-                <div class="flex flex-wrap justify-center md:justify-start gap-6">
-                    <a href="https://www.behance.net/mdsamim91" target="_blank" class="px-10 py-4 text-lg bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold rounded-full shadow-[0_10px_30px_rgba(168,85,247,0.4)] hover:shadow-[0_10px_40px_rgba(34,211,238,0.6)] hover:-translate-y-2 transition-all duration-300 flex items-center gap-3">
-                        <i class="fab fa-behance text-2xl"></i> View Behance
+                <!-- Animated Gradient Name (Fixed for Mobile) -->
+                <h1 class="text-[11vw] sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-3 animate-gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-cyan-500 dark:from-purple-400 dark:via-fuchsia-400 dark:to-cyan-400 drop-shadow-lg whitespace-nowrap overflow-hidden text-ellipsis">
+                    MD SAMIM
+                </h1>
+                
+                <p class="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-900 dark:from-slate-100 dark:to-slate-300 text-transparent bg-clip-text mb-8">Graphic Designer & Video Editor</p>
+                
+                <div class="flex flex-wrap justify-center md:justify-start gap-5 md:gap-8 text-sm md:text-lg font-semibold text-slate-700 dark:text-slate-300 mb-10">
+                    <span class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-cyan-600 dark:text-cyan-400"></i> Homna, Comilla</span>
+                    <span class="flex items-center gap-2"><i class="fas fa-phone text-purple-600 dark:text-purple-400"></i> 01786537259, 01690081808</span>
+                </div>
+
+                <!-- Buttons & Socials -->
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6">
+                    <a href="https://www.behance.net/mdsamim91" target="_blank" class="px-8 py-3.5 md:px-10 md:py-4 text-base md:text-lg bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold rounded-full shadow-[0_10px_30px_rgba(168,85,247,0.4)] hover:shadow-[0_10px_40px_rgba(34,211,238,0.6)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
+                        <i class="fab fa-behance text-2xl"></i> Behance
+                    </a>
+                    <a href="#hire-me" class="px-8 py-3.5 md:px-10 md:py-4 text-base md:text-lg bg-white/50 dark:bg-white/10 border border-slate-300 dark:border-white/20 hover:bg-white/80 dark:hover:bg-white/20 text-slate-900 dark:text-white font-bold rounded-full hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
+                        <i class="fas fa-download text-xl"></i> Download CV
                     </a>
                 </div>
+
+                <!-- Circular Social Links -->
+                <div class="flex items-center justify-center md:justify-start gap-4 mt-8">
+                    <a href="https://wa.me/8801786537259" target="_blank" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-green-600 dark:text-green-400 hover:scale-110 hover:text-green-500 transition-all shadow-lg text-2xl"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-blue-600 dark:text-blue-400 hover:scale-110 hover:text-blue-500 transition-all shadow-lg text-2xl"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-pink-600 dark:text-pink-400 hover:scale-110 hover:text-pink-500 transition-all shadow-lg text-2xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-blue-700 dark:text-blue-500 hover:scale-110 hover:text-blue-400 transition-all shadow-lg text-2xl"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+
             </div>
         </header>
 
         <!-- Main CV Grid -->
         <main class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-24">
-            
             <!-- Left Column -->
             <div class="space-y-10 lg:col-span-1">
-                <section class="glass-card rounded-[2.5rem] p-10">
+                <!-- Objective -->
+                <section class="glass-card rounded-[2.5rem] p-10 hover:-translate-y-2">
                     <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-4 uppercase tracking-wider"><div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center"><i class="fas fa-bullseye text-cyan-600 dark:text-cyan-400 text-xl"></i></div> Objective</h2>
                     <p class="text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300 text-justify font-medium">
                         Motivated creative professional with a strong foundation in graphic design, microstock contribution, and digital media. Expanding my skills in video editing, Meta ads, and generative AI. Combining discipline from extensive Islamic studies with creative passion.
                     </p>
                 </section>
-
-                <section class="glass-card rounded-[2.5rem] p-10">
+                <!-- Skills -->
+                <section class="glass-card rounded-[2.5rem] p-10 hover:-translate-y-2">
                     <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-4 uppercase tracking-wider"><div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><i class="fas fa-gem text-purple-600 dark:text-purple-400 text-xl"></i></div> Core Skills</h2>
                     <div class="space-y-6 text-base md:text-lg font-medium">
                         <div class="group cursor-default">
@@ -190,12 +214,7 @@
                         <div class="w-full h-[2px] bg-slate-300 dark:bg-white/10"></div>
                         <div class="group cursor-default">
                             <h3 class="text-cyan-700 dark:text-cyan-400 font-bold mb-2 group-hover:translate-x-3 transition-transform text-xl">Digital Skills</h3>
-                            <p class="text-slate-700 dark:text-slate-300 group-hover:translate-x-3 transition-transform">Generative AI (Prompting), Meta Marketing</p>
-                        </div>
-                        <div class="w-full h-[2px] bg-slate-300 dark:bg-white/10"></div>
-                        <div class="group cursor-default">
-                            <h3 class="text-cyan-700 dark:text-cyan-400 font-bold mb-2 group-hover:translate-x-3 transition-transform text-xl">Soft Skills</h3>
-                            <p class="text-slate-700 dark:text-slate-300 group-hover:translate-x-3 transition-transform">Highly Disciplined, Strong Focus, Quick Learner</p>
+                            <p class="text-slate-700 dark:text-slate-300 group-hover:translate-x-3 transition-transform">Generative AI, Meta Marketing</p>
                         </div>
                     </div>
                 </section>
@@ -203,7 +222,8 @@
 
             <!-- Right Column -->
             <div class="space-y-10 lg:col-span-2">
-                <section class="glass-card rounded-[2.5rem] p-10 md:p-12">
+                <!-- Experience -->
+                <section class="glass-card rounded-[2.5rem] p-10 md:p-12 hover:-translate-y-2">
                     <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-10 flex items-center gap-5 tracking-wide"><div class="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center"><i class="fas fa-briefcase text-purple-600 dark:text-purple-400 text-2xl"></i></div> Professional Experience</h2>
                     
                     <div class="relative border-l-4 border-slate-300 dark:border-white/10 pl-10 pb-12 group">
@@ -211,8 +231,7 @@
                         <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Freelance Graphic Designer</h3>
                         <p class="text-cyan-700 dark:text-cyan-400 text-lg font-bold mb-5 mt-2">Self-Employed | 2022 – Present</p>
                         <ul class="list-disc list-outside ml-6 text-slate-700 dark:text-slate-300 text-base md:text-lg font-medium space-y-3 leading-relaxed">
-                            <li>Designing high-quality vectors for platforms like Freepik & Shutterstock.</li>
-                            <li>Successfully generating foreign remittance by selling digital assets to global clients.</li>
+                            <li>Designing high-quality vectors for Freepik & Shutterstock.</li>
                             <li>Registered Freelancer, Govt. of Bangladesh (ID: F126195488205).</li>
                         </ul>
                     </div>
@@ -222,13 +241,14 @@
                         <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Trainee, Creative Dept.</h3>
                         <p class="text-cyan-700 dark:text-cyan-400 text-lg font-bold mb-5 mt-2">As-Sunnah Skill Development Institute | Present</p>
                         <ul class="list-disc list-outside ml-6 text-slate-700 dark:text-slate-300 text-base md:text-lg font-medium space-y-3 leading-relaxed">
-                            <li>Receiving hands-on training in Graphic Design, Video Editing, Meta Ads, and AI Tools.</li>
-                            <li>Registered candidate for the upcoming NSDA Govt. Certification Assessment.</li>
+                            <li>Training in Graphic Design, Video Editing, Meta Ads, and AI Tools.</li>
+                            <li>Candidate for the upcoming NSDA Govt. Certification.</li>
                         </ul>
                     </div>
                 </section>
 
-                <section class="glass-card rounded-[2.5rem] p-10 md:p-12">
+                <!-- Education -->
+                <section class="glass-card rounded-[2.5rem] p-10 md:p-12 hover:-translate-y-2">
                     <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-10 flex items-center gap-5 tracking-wide"><div class="w-14 h-14 rounded-full bg-cyan-500/20 flex items-center justify-center"><i class="fas fa-graduation-cap text-cyan-600 dark:text-cyan-400 text-2xl"></i></div> Education & Background</h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -236,11 +256,7 @@
                             <h4 class="text-slate-900 dark:text-slate-100 font-bold text-xl mb-3">Dept. of Ifta (Islamic Jurisprudence)</h4>
                             <p class="text-slate-700 dark:text-slate-400 text-base font-medium leading-relaxed">Markazur Rashid Lil Fikril Islami Dhaka<br><span class="text-purple-700 dark:text-purple-400 mt-3 font-bold inline-block bg-purple-500/10 px-3 py-1.5 rounded-lg">Currently Enrolled</span></p>
                         </div>
-                        <div class="bg-white/60 dark:bg-white/[0.03] p-8 rounded-[2rem] border border-slate-300 dark:border-white/10 hover:border-cyan-400 dark:hover:border-cyan-500/50 hover:shadow-2xl transition-all duration-300">
-                            <h4 class="text-slate-900 dark:text-slate-100 font-bold text-xl mb-3">Dawra-e-Hadith (Master's Eqv.)</h4>
-                            <p class="text-slate-700 dark:text-slate-400 text-base font-medium leading-relaxed">Jamia Islamia Darul Uloom Madania<br><span class="text-cyan-700 dark:text-cyan-400 mt-3 font-bold inline-block bg-cyan-500/10 px-3 py-1.5 rounded-lg">Expected 2026</span></p>
-                        </div>
-                        <div class="bg-white/60 dark:bg-white/[0.03] p-8 rounded-[2rem] border border-slate-300 dark:border-white/10 hover:border-purple-400 dark:hover:border-purple-500/50 hover:shadow-2xl transition-all duration-300 md:col-span-2 flex items-center gap-6">
+                        <div class="bg-white/60 dark:bg-white/[0.03] p-8 rounded-[2rem] border border-slate-300 dark:border-white/10 hover:border-cyan-400 dark:hover:border-cyan-500/50 hover:shadow-2xl transition-all duration-300 md:col-span-2 flex items-center gap-6">
                             <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-purple-600 to-cyan-500 flex items-center justify-center shrink-0 shadow-xl">
                                 <i class="fas fa-book-quran text-4xl text-white"></i>
                             </div>
@@ -255,15 +271,17 @@
         </main>
 
         <!-- SECTION 1: Graphic Design Portfolio Slider -->
-        <section class="mb-32">
+        <!-- Note: We apply animate-gradient-text to the WHOLE heading now -->
+        <section class="mb-32 hidden" id="section-graphics">
             <div class="text-center mb-14">
-                <h2 class="text-5xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight drop-shadow-md">Graphic Design <span class="animate-gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-cyan-500">Showcase</span></h2>
-                <p class="text-slate-700 dark:text-slate-300 font-medium text-lg mt-6">High-quality vectors, illustrations & social media designs</p>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-md animate-gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-cyan-500 dark:from-purple-400 dark:via-pink-400 dark:to-cyan-400 pb-2">
+                    Graphic Design Showcase
+                </h2>
+                <p class="text-slate-700 dark:text-slate-300 font-medium text-lg mt-4">High-quality vectors, illustrations & social media designs</p>
             </div>
             
             <div class="glass-card rounded-[3rem] p-8 md:p-12 relative">
                 <div class="swiper swiper-graphics">
-                    <!-- Dynamic Graphic Slides (Will hold up to 20 images automatically) -->
                     <div class="swiper-wrapper pb-20" id="graphics-wrapper"></div>
                     <div class="swiper-pagination-graphics text-center"></div>
                 </div>
@@ -271,15 +289,16 @@
         </section>
 
         <!-- SECTION 2: Video Editing Slider -->
-        <section class="mb-32">
+        <section class="mb-32 hidden" id="section-video">
             <div class="text-center mb-14">
-                <h2 class="text-5xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight drop-shadow-md">Video Editing <span class="animate-gradient-text bg-gradient-to-r from-cyan-600 via-blue-500 to-purple-500">Projects</span></h2>
-                <p class="text-slate-700 dark:text-slate-300 font-medium text-lg mt-6">Promotional ads, Islamic lectures & social media reels</p>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-md animate-gradient-text bg-gradient-to-r from-cyan-600 via-blue-500 to-purple-500 dark:from-cyan-400 dark:via-blue-400 dark:to-purple-400 pb-2">
+                    Video Editing Projects
+                </h2>
+                <p class="text-slate-700 dark:text-slate-300 font-medium text-lg mt-4">Promotional ads, Islamic lectures & social media reels</p>
             </div>
 
             <div class="glass-card rounded-[3rem] p-8 md:p-12 relative">
                 <div class="swiper swiper-video">
-                    <!-- Dynamic Video Slides -->
                     <div class="swiper-wrapper pb-20" id="video-wrapper"></div>
                     <div class="swiper-pagination-video text-center"></div>
                 </div>
@@ -287,17 +306,83 @@
         </section>
 
         <!-- SECTION 3: Personal Photo Gallery Slider -->
-        <section class="mb-20">
+        <section class="mb-32 hidden" id="section-personal">
             <div class="text-center mb-14">
-                <h2 class="text-5xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight drop-shadow-md">Personal <span class="animate-gradient-text bg-gradient-to-r from-pink-600 via-rose-500 to-purple-600">Gallery</span></h2>
-                <p class="text-slate-700 dark:text-slate-300 font-medium text-lg mt-6">Glimpses of my life & behind the scenes</p>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-md animate-gradient-text bg-gradient-to-r from-pink-600 via-rose-500 to-purple-600 dark:from-pink-400 dark:via-rose-400 dark:to-purple-400 pb-2">
+                    Personal Gallery
+                </h2>
+                <p class="text-slate-700 dark:text-slate-300 font-medium text-lg mt-4">Glimpses of my life & behind the scenes</p>
             </div>
 
             <div class="glass-card rounded-[3rem] p-8 md:p-12 relative">
                 <div class="swiper swiper-personal">
-                    <!-- Dynamic Personal Slides (Up to 20 images) -->
                     <div class="swiper-wrapper pb-20" id="personal-wrapper"></div>
                     <div class="swiper-pagination-personal text-center"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: HIRE ME / CONTACT FORM -->
+        <section id="hire-me" class="mb-20">
+            <div class="glass-card rounded-[3rem] p-10 md:p-16 relative overflow-hidden">
+                <!-- Background glow inside card -->
+                <div class="absolute top-0 right-0 w-[300px] h-[300px] bg-purple-500/20 rounded-full blur-[80px] pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-cyan-500/20 rounded-full blur-[80px] pointer-events-none"></div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 relative z-10">
+                    <!-- Text Info -->
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-6 animate-gradient-text bg-gradient-to-r from-purple-600 to-cyan-500 dark:from-purple-400 dark:to-cyan-400 pb-2">
+                            Let's Work Together!
+                        </h2>
+                        <p class="text-lg text-slate-700 dark:text-slate-300 font-medium mb-10 leading-relaxed">
+                            I am currently available for freelance projects. If you need stunning graphics, professional video editing, or creative direction, feel free to drop a message!
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-5 glass-card p-5 rounded-2xl w-max">
+                                <div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 text-2xl"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 font-bold uppercase">Email Me</p>
+                                    <p class="text-lg font-bold text-slate-800 dark:text-white">Shamimahmad7259@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-5 glass-card p-5 rounded-2xl w-max">
+                                <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 text-2xl"><i class="fas fa-phone"></i></div>
+                                <div>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400 font-bold uppercase">Call / WhatsApp</p>
+                                    <p class="text-lg font-bold text-slate-800 dark:text-white">+880 1786 537 259</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- The Form -->
+                    <div class="glass-card p-8 md:p-10 rounded-[2.5rem] shadow-2xl">
+                        <form action="mailto:Shamimahmad7259@gmail.com" method="post" enctype="text/plain" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Your Name</label>
+                                <input type="text" placeholder="John Doe" class="w-full px-5 py-4 rounded-xl glass-input font-medium transition-all" required>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
+                                    <input type="email" placeholder="john@example.com" class="w-full px-5 py-4 rounded-xl glass-input font-medium transition-all" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Phone Number</label>
+                                    <input type="tel" placeholder="+880..." class="w-full px-5 py-4 rounded-xl glass-input font-medium transition-all">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Your Message</label>
+                                <textarea rows="4" placeholder="Tell me about your project..." class="w-full px-5 py-4 rounded-xl glass-input font-medium transition-all resize-none" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 text-lg bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold rounded-xl shadow-[0_10px_30px_rgba(168,85,247,0.4)] hover:shadow-[0_10px_40px_rgba(34,211,238,0.6)] hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -311,52 +396,9 @@
 
     </div>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // --- Auto-Generate Up to 20 Slides For Each Section ---
-        // If an image doesn't exist, the 'onerror' event silently removes the slide!
-        
-        // 1. Graphics Generation
-        const graphicsWrapper = document.getElementById('graphics-wrapper');
-        for(let i=1; i<=20; i++) {
-            graphicsWrapper.innerHTML += `
-            <div class="swiper-slide">
-                <div class="img-presenter h-[350px] md:h-[600px] group">
-                    <img src="gd${i}.jpg" onerror="this.closest('.swiper-slide').remove();" class="w-full h-full object-contain filter drop-shadow-2xl rounded-2xl group-hover:scale-[1.02] transition-transform duration-500">
-                </div>
-            </div>`;
-        }
-
-        // 2. Videos Generation
-        const videoWrapper = document.getElementById('video-wrapper');
-        for(let i=1; i<=20; i++) {
-            videoWrapper.innerHTML += `
-            <div class="swiper-slide">
-                <div class="bg-white/60 dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 rounded-[2rem] p-6 group cursor-pointer hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
-                    <div class="img-presenter flex-1 h-64 md:h-80 relative overflow-hidden group-hover:bg-black/60 transition-colors duration-500">
-                        <img src="video${i}.jpg" onerror="this.closest('.swiper-slide').remove();" class="w-full h-full object-contain filter drop-shadow-xl opacity-100 group-hover:opacity-40 transition duration-500">
-                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <div class="w-20 h-20 rounded-full bg-cyan-600/20 flex items-center justify-center backdrop-blur-md border border-cyan-400/50 group-hover:scale-125 group-hover:bg-cyan-500/50 transition-all duration-500 shadow-[0_0_30px_rgba(34,211,238,0.5)]">
-                                <i class="fas fa-play text-3xl text-white ml-2"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="text-center font-black text-slate-900 dark:text-slate-100 mt-6 mb-2 text-xl">Video Project ${i}</h3>
-                </div>
-            </div>`;
-        }
-
-        // 3. Personal Gallery Generation
-        const personalWrapper = document.getElementById('personal-wrapper');
-        for(let i=1; i<=20; i++) {
-            personalWrapper.innerHTML += `
-            <div class="swiper-slide">
-                <div class="img-presenter h-[350px] md:h-[550px] group">
-                    <img src="photo${i}.jpg" onerror="this.closest('.swiper-slide').remove();" class="w-full h-full object-contain filter drop-shadow-2xl rounded-2xl group-hover:scale-[1.02] transition-transform duration-500">
-                </div>
-            </div>`;
-        }
-
         // --- Theme Toggle ---
         function toggleTheme() {
             const htmlTag = document.documentElement;
@@ -364,36 +406,89 @@
             localStorage.theme = htmlTag.classList.contains('dark') ? 'dark' : 'light';
         }
 
-        // Wait a tiny bit for bad images to be removed before initializing Swiper
-        setTimeout(() => {
-            // --- Swiper Initializations ---
-            const swiperConfig = {
-                loop: false, // Turned off loop to prevent empty space bugs with dynamic slides
-                observer: true, 
-                observeParents: true,
-                autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
-            };
+        // --- SMART DYNAMIC IMAGE LOADER ---
+        // This script checks if images actually exist before adding them.
+        // It ensures NO empty slides will ever show up.
+        
+        async function loadImages() {
+            const sections =[
+                { id: 'graphics-wrapper', sectionId: 'section-graphics', prefix: 'gd', isVideo: false },
+                { id: 'video-wrapper', sectionId: 'section-video', prefix: 'video', isVideo: true },
+                { id: 'personal-wrapper', sectionId: 'section-personal', prefix: 'photo', isVideo: false }
+            ];
 
-            new Swiper(".swiper-graphics", {
-                ...swiperConfig,
-                pagination: { el: ".swiper-pagination-graphics", clickable: true },
-                breakpoints: { 640: { slidesPerView: 1 }, 1024: { slidesPerView: 2, spaceBetween: 40 } },
-            });
+            for (const sec of sections) {
+                const wrapper = document.getElementById(sec.id);
+                let validImagesCount = 0;
 
-            new Swiper(".swiper-video", {
-                ...swiperConfig,
-                autoplay: { delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true },
-                pagination: { el: ".swiper-pagination-video", clickable: true },
-                breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 40 } },
-            });
+                // Check from 1 to 20 sequentially
+                for(let i=1; i<=20; i++) {
+                    const imgUrl = `${sec.prefix}${i}.jpg`;
+                    
+                    // Promise to check if image loads successfully
+                    const exists = await new Promise(resolve => {
+                        const img = new Image();
+                        img.onload = () => resolve(true);
+                        img.onerror = () => resolve(false);
+                        img.src = imgUrl;
+                    });
 
-            new Swiper(".swiper-personal", {
-                ...swiperConfig,
-                autoplay: { delay: 4000, disableOnInteraction: false, reverseDirection: true, pauseOnMouseEnter: true },
-                pagination: { el: ".swiper-pagination-personal", clickable: true },
-                breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 40 } },
-            });
-        }, 100);
+                    if(exists) {
+                        validImagesCount++;
+                        // Generate HTML based on section type
+                        if(sec.isVideo) {
+                            wrapper.innerHTML += `
+                            <div class="swiper-slide">
+                                <div class="bg-white/60 dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 rounded-[2rem] p-6 group cursor-pointer hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
+                                    <div class="img-presenter flex-1 h-64 md:h-80 relative overflow-hidden group-hover:bg-black/60 transition-colors duration-500">
+                                        <img src="${imgUrl}" class="w-full h-full object-contain filter drop-shadow-xl opacity-100 group-hover:opacity-40 transition duration-500">
+                                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                            <div class="w-20 h-20 rounded-full bg-cyan-600/20 flex items-center justify-center backdrop-blur-md border border-cyan-400/50 group-hover:scale-125 group-hover:bg-cyan-500/50 transition-all duration-500 shadow-[0_0_30px_rgba(34,211,238,0.5)]">
+                                                <i class="fas fa-play text-3xl text-white ml-2"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-center font-black text-slate-900 dark:text-slate-100 mt-6 mb-2 text-xl">Video Project ${i}</h3>
+                                </div>
+                            </div>`;
+                        } else {
+                            wrapper.innerHTML += `
+                            <div class="swiper-slide">
+                                <div class="img-presenter h-[350px] md:h-[600px] group">
+                                    <img src="${imgUrl}" class="w-full h-full object-contain filter drop-shadow-2xl rounded-2xl group-hover:scale-[1.02] transition-transform duration-500">
+                                </div>
+                            </div>`;
+                        }
+                    } else {
+                        // If image doesn't exist, stop checking further numbers for this section to save time
+                        // (Assuming you upload them sequentially: 1, 2, 3...)
+                        break; 
+                    }
+                }
+
+                // If at least 1 image was found, show the section and initialize Swiper
+                if(validImagesCount > 0) {
+                    document.getElementById(sec.sectionId).classList.remove('hidden');
+                    
+                    const swiperConfig = {
+                        loop: validImagesCount > 3, // Only loop if there are enough slides
+                        autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
+                        pagination: { el: `.swiper-pagination-${sec.prefix === 'photo' ? 'personal' : (sec.prefix === 'gd' ? 'graphics' : 'video')}`, clickable: true },
+                    };
+
+                    if(sec.prefix === 'video') {
+                        new Swiper(".swiper-video", { ...swiperConfig, breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 40 } } });
+                    } else if(sec.prefix === 'gd') {
+                        new Swiper(".swiper-graphics", { ...swiperConfig, breakpoints: { 640: { slidesPerView: 1 }, 1024: { slidesPerView: 2, spaceBetween: 40 } } });
+                    } else {
+                        new Swiper(".swiper-personal", { ...swiperConfig, autoplay: { delay: 4000, disableOnInteraction: false, reverseDirection: true, pauseOnMouseEnter: true }, breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 40 } } });
+                    }
+                }
+            }
+        }
+
+        // Run the smart loader as soon as the page opens
+        loadImages();
     </script>
 </body>
 </html>
