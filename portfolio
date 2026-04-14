@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD SAMIM | Graphic Designer & Freelancer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Header / Hero Section -->
+    <header class="bg-white shadow-sm py-12">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
+            <img src="profile.jpg" alt="Md Samim" class="w-40 h-40 rounded-full object-cover shadow-lg border-4 border-gray-100">
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl font-bold text-gray-900 tracking-tight">MD SAMIM</h1>
+                <p class="text-xl text-gray-600 mt-2 font-medium">Graphic Designer & Gov. Recognized Freelancer</p>
+                <div class="mt-4 flex flex-wrap justify-center md:justify-start gap-4 text-sm text-gray-500">
+                    <span><i class="fas fa-map-marker-alt text-gray-400 mr-1"></i> Homna, Comilla</span>
+                    <span><i class="fas fa-phone text-gray-400 mr-1"></i> 01786537259, 01690081808</span>
+                    <a href="mailto:Shamimahmad7259@gmail.com" class="hover:text-blue-600"><i class="fas fa-envelope text-gray-400 mr-1"></i> Shamimahmad7259@gmail.com</a>
+                    <a href="https://www.behance.net/mdsamim91" target="_blank" class="hover:text-blue-600 font-semibold"><i class="fab fa-behance text-blue-500 mr-1"></i> Behance Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-12 space-y-12">
+        
+        <!-- Career Objective -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-4 uppercase tracking-wider text-sm">Career Objective</h2>
+            <p class="text-gray-700 leading-relaxed text-justify">
+                Motivated creative professional with a strong foundation in graphic design, microstock contribution, and digital media. As a Govt-recognized freelancer, I am actively expanding my skills in video editing, Meta ads, and generative AI. Combining discipline from extensive Islamic studies with creative passion, I aim to add significant value to a dynamic organization.
+            </p>
+        </section>
+
+        <!-- Portfolio Showcase -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-6 uppercase tracking-wider text-sm">Portfolio Showcase</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <img src="work1.jpg" alt="Portfolio Work 1" class="w-full h-64 object-cover rounded shadow-sm hover:shadow-md transition duration-300">
+                <img src="work2.jpg" alt="Portfolio Work 2" class="w-full h-64 object-cover rounded shadow-sm hover:shadow-md transition duration-300">
+                <img src="work3.jpg" alt="Portfolio Work 3" class="w-full h-64 object-cover rounded shadow-sm hover:shadow-md transition duration-300">
+                <img src="work4.jpg" alt="Portfolio Work 4" class="w-full h-64 object-cover rounded shadow-sm hover:shadow-md transition duration-300">
+            </div>
+            <div class="mt-4 text-right">
+                <a href="https://www.behance.net/mdsamim91" target="_blank" class="text-blue-600 hover:underline font-medium">View more on Behance &rarr;</a>
+            </div>
+        </section>
+
+        <!-- Professional Experience & Recognitions -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <section>
+                <h2 class="text-2xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-4 uppercase tracking-wider text-sm">Professional Experience</h2>
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold text-gray-800">Freelance Graphic Designer & Microstock Contributor</h3>
+                    <p class="text-sm text-gray-500 mb-2">Self-Employed | 2022 – Present</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Designing high-quality vectors and illustrations for platforms like Freepik & Shutterstock.</li>
+                        <li>Successfully generating foreign remittance by selling digital assets to global clients.</li>
+                        <li>Ensuring all designs meet global trends and strict copyright regulations.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-4 uppercase tracking-wider text-sm">Recognitions & Training</h2>
+                <div class="mb-4">
+                    <h3 class="text-lg font-bold text-gray-800">Registered Freelancer (Graphics)</h3>
+                    <p class="text-sm text-gray-500 mb-1">Govt. of Bangladesh (ID: F126195488205)</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Officially recognized as a verified earning freelancer for generating foreign remittance.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">Trainee, Creative Dept.</h3>
+                    <p class="text-sm text-gray-500 mb-1">As-Sunnah Skill Development Institute | Present</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Receiving hands-on training in Graphic Design, Video Editing, Meta Ads, and AI Tools.</li>
+                        <li>Registered candidate for the upcoming NSDA Govt. Certification Assessment.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <!-- Education & Skills -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <section>
+                <h2 class="text-2xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-4 uppercase tracking-wider text-sm">Education</h2>
+                <ul class="list-none text-gray-700 space-y-3">
+                    <li><strong class="text-gray-800">Dept. of Ifta (Islamic Jurisprudence):</strong><br> Markazur Rashid Lil Fikril Islami Dhaka (Currently Enrolled)</li>
+                    <li><strong class="text-gray-800">Dawra-e-Hadith (Master's Equivalent):</strong><br> Jamia Islamia Darul Uloom Madania (Expected 2026)</li>
+                    <li><strong class="text-gray-800">Hifz-ul-Quran:</strong><br> Completed in 2017</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-bold text-gray-900 border-b-2 border-gray-200 pb-2 mb-4 uppercase tracking-wider text-sm">Skills & Languages</h2>
+                <div class="mb-4 text-gray-700">
+                    <p><strong>Multimedia:</strong> Adobe Illustrator, Photoshop, Video Editing.</p>
+                    <p class="mt-2"><strong>Digital Skills:</strong> Generative AI (Prompting), Meta Marketing.</p>
+                    <p class="mt-2"><strong>Office Tools:</strong> Microsoft Word, Microsoft Excel.</p>
+                    <p class="mt-2"><strong>Soft Skills:</strong> Highly Disciplined, Strong Focus, Quick Learner.</p>
+                </div>
+                <div class="text-gray-700">
+                    <p><strong>Languages:</strong> Bengali (Native), Arabic (Proficient), English (Working Proficiency).</p>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-6 text-center text-sm">
+        <p>&copy; 2026 MD SAMIM. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
