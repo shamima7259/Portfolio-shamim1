@@ -151,7 +151,7 @@
                     <a href="https://www.behance.net/mdsamim91" target="_blank" class="px-8 py-3.5 md:px-10 md:py-4 text-base md:text-lg bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold rounded-full shadow-[0_10px_30px_rgba(168,85,247,0.4)] hover:shadow-[0_10px_40px_rgba(34,211,238,0.6)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
                         <i class="fab fa-behance text-2xl"></i> Behance
                     </a>
-                    <!-- Generate PDF JS Function Call -->
+                    
                     <button onclick="downloadCV()" class="px-8 py-3.5 md:px-10 md:py-4 text-base md:text-lg bg-white/50 dark:bg-white/10 border border-slate-300 dark:border-white/20 hover:bg-white/80 dark:hover:bg-white/20 text-slate-900 dark:text-white font-bold rounded-full hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
                         <i class="fas fa-download text-xl" id="dl-icon"></i> <span id="dl-text">Download CV</span>
                     </button>
@@ -166,14 +166,19 @@
 
         <!-- Main CV Grid -->
         <main class="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-24">
+            
+            <!-- Left Column -->
             <div class="space-y-10 lg:col-span-1">
-                <section class="glass-card rounded-[2.5rem] p-10 hover:-translate-y-2">
+                <!-- Objective -->
+                <section class="glass-card rounded-[2.5rem] p-10 hover:-translate-y-2 transition-transform duration-300">
                     <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-4 uppercase tracking-wider"><div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center"><i class="fas fa-bullseye text-cyan-600 dark:text-cyan-400 text-xl"></i></div> Objective</h2>
                     <p class="text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300 text-justify font-medium">
                         Motivated creative professional with a strong foundation in graphic design, microstock contribution, and digital media. Expanding my skills in video editing, Meta ads, and generative AI. Combining discipline from extensive Islamic studies with creative passion.
                     </p>
                 </section>
-                <section class="glass-card rounded-[2.5rem] p-10 hover:-translate-y-2">
+                
+                <!-- Skills -->
+                <section class="glass-card rounded-[2.5rem] p-10 hover:-translate-y-2 transition-transform duration-300">
                     <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-4 uppercase tracking-wider"><div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><i class="fas fa-gem text-purple-600 dark:text-purple-400 text-xl"></i></div> Core Skills</h2>
                     <div class="space-y-6 text-base md:text-lg font-medium">
                         <div class="group cursor-default">
@@ -187,10 +192,22 @@
                         </div>
                     </div>
                 </section>
+
+                <!-- Languages Section (NEW) -->
+                <section class="glass-card rounded-[2.5rem] p-10 hover:-translate-y-2 transition-transform duration-300">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-4 uppercase tracking-wider"><div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><i class="fas fa-language text-blue-600 dark:text-blue-400 text-xl"></i></div> Languages</h2>
+                    <ul class="text-base md:text-lg font-medium space-y-4">
+                        <li class="flex justify-between items-center"><span class="text-slate-700 dark:text-slate-300">Bengali</span> <span class="text-purple-700 dark:text-purple-300 font-bold text-sm bg-purple-500/10 px-3 py-1.5 rounded-lg border border-purple-500/20">Native</span></li>
+                        <li class="flex justify-between items-center"><span class="text-slate-700 dark:text-slate-300">Arabic</span> <span class="text-cyan-700 dark:text-cyan-300 font-bold text-sm bg-cyan-500/10 px-3 py-1.5 rounded-lg border border-cyan-500/20">Proficient</span></li>
+                        <li class="flex justify-between items-center"><span class="text-slate-700 dark:text-slate-300">English</span> <span class="text-purple-700 dark:text-purple-300 font-bold text-sm bg-purple-500/10 px-3 py-1.5 rounded-lg border border-purple-500/20">Working</span></li>
+                    </ul>
+                </section>
             </div>
 
+            <!-- Right Column -->
             <div class="space-y-10 lg:col-span-2">
-                <section class="glass-card rounded-[2.5rem] p-10 md:p-12 hover:-translate-y-2">
+                <!-- Experience -->
+                <section class="glass-card rounded-[2.5rem] p-10 md:p-12 hover:-translate-y-2 transition-transform duration-300">
                     <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-10 flex items-center gap-5 tracking-wide"><div class="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center"><i class="fas fa-briefcase text-purple-600 dark:text-purple-400 text-2xl"></i></div> Professional Experience</h2>
                     
                     <div class="relative border-l-4 border-slate-300 dark:border-white/10 pl-10 pb-12 group">
@@ -214,7 +231,8 @@
                     </div>
                 </section>
 
-                <section class="glass-card rounded-[2.5rem] p-10 md:p-12 hover:-translate-y-2">
+                <!-- Education -->
+                <section class="glass-card rounded-[2.5rem] p-10 md:p-12 hover:-translate-y-2 transition-transform duration-300">
                     <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-10 flex items-center gap-5 tracking-wide"><div class="w-14 h-14 rounded-full bg-cyan-500/20 flex items-center justify-center"><i class="fas fa-graduation-cap text-cyan-600 dark:text-cyan-400 text-2xl"></i></div> Education & Background</h2>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -241,7 +259,7 @@
         </main>
 
         <!-- Hidden Portfolios handled by auto-loader -->
-        <section class="mb-32 hidden" id="section-graphics">
+        <section class="mb-32" id="section-graphics">
             <div class="text-center mb-14">
                 <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-md animate-gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-cyan-500 dark:from-purple-400 dark:via-pink-400 dark:to-cyan-400 pb-2">
                     Graphic Design Showcase
@@ -256,7 +274,7 @@
             </div>
         </section>
 
-        <section class="mb-32 hidden" id="section-video">
+        <section class="mb-32" id="section-video">
             <div class="text-center mb-14">
                 <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-md animate-gradient-text bg-gradient-to-r from-cyan-600 via-blue-500 to-purple-500 dark:from-cyan-400 dark:via-blue-400 dark:to-purple-400 pb-2">
                     Video Editing Projects
@@ -271,7 +289,7 @@
             </div>
         </section>
 
-        <section class="mb-32 hidden" id="section-personal">
+        <section class="mb-32" id="section-personal">
             <div class="text-center mb-14">
                 <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-md animate-gradient-text bg-gradient-to-r from-pink-600 via-rose-500 to-purple-600 dark:from-pink-400 dark:via-rose-400 dark:to-purple-400 pb-2">
                     Personal Gallery
@@ -287,7 +305,6 @@
         </section>
 
         <!-- HIRE ME / CONTACT FORM -->
-        <!-- Update: Action link added to send email directly via FormSubmit -->
         <section id="hire-me" class="mb-20">
             <div class="glass-card rounded-[3rem] p-10 md:p-16 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-[300px] h-[300px] bg-purple-500/20 rounded-full blur-[80px] pointer-events-none"></div>
@@ -303,14 +320,14 @@
                         </p>
                         
                         <div class="space-y-6">
-                            <div class="flex items-center gap-5 glass-card p-5 rounded-2xl w-max">
+                            <div class="flex items-center gap-5 glass-card p-5 rounded-2xl w-max hover:-translate-y-1 transition-transform">
                                 <div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 text-2xl"><i class="fas fa-envelope"></i></div>
                                 <div>
                                     <p class="text-sm text-slate-500 dark:text-slate-400 font-bold uppercase">Email Me</p>
                                     <p class="text-lg font-bold text-slate-800 dark:text-white">Shamimahmad7259@gmail.com</p>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-5 glass-card p-5 rounded-2xl w-max">
+                            <div class="flex items-center gap-5 glass-card p-5 rounded-2xl w-max hover:-translate-y-1 transition-transform">
                                 <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 text-2xl"><i class="fas fa-phone"></i></div>
                                 <div>
                                     <p class="text-sm text-slate-500 dark:text-slate-400 font-bold uppercase">Call / WhatsApp</p>
@@ -321,9 +338,8 @@
                     </div>
 
                     <div class="glass-card p-8 md:p-10 rounded-[2.5rem] shadow-2xl">
-                        <!-- Direct Email Form Setup -->
+                        <!-- Direct Email Form Setup using FormSubmit -->
                         <form action="https://formsubmit.co/Shamimahmad7259@gmail.com" method="POST" class="space-y-6">
-                            <!-- Optional Settings for FormSubmit -->
                             <input type="hidden" name="_captcha" value="false">
                             <input type="hidden" name="_subject" value="New message from Portfolio Client!">
                             
@@ -425,7 +441,6 @@
             const icon = document.getElementById('dl-icon');
             const text = document.getElementById('dl-text');
             
-            // Change button state
             icon.className = "fas fa-spinner fa-spin text-xl";
             text.innerText = "Generating...";
 
@@ -437,13 +452,13 @@
                 jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
             };
 
-            // Generate PDF
             html2pdf().set(opt).from(element).save().then(() => {
                 icon.className = "fas fa-download text-xl";
                 text.innerText = "Download CV";
             });
         }
 
+        // Advanced Smart Image Loader
         async function loadImages() {
             const sections =[
                 { id: 'graphics-wrapper', sectionId: 'section-graphics', prefix: 'gd', isVideo: false },
@@ -454,58 +469,76 @@
             for (const sec of sections) {
                 const wrapper = document.getElementById(sec.id);
                 let validImagesCount = 0;
+                const promises =[];
 
+                // Check all 20 images in parallel for faster loading
                 for(let i=1; i<=20; i++) {
                     const imgUrl = `${sec.prefix}${i}.jpg`;
-                    const exists = await new Promise(resolve => {
+                    promises.push(new Promise(resolve => {
                         const img = new Image();
-                        img.onload = () => resolve(true);
-                        img.onerror = () => resolve(false);
+                        img.onload = () => resolve({ exists: true, url: imgUrl, index: i });
+                        img.onerror = () => resolve({ exists: false, url: imgUrl, index: i });
                         img.src = imgUrl;
-                    });
+                    }));
+                }
 
-                    if(exists) {
+                const results = await Promise.all(promises);
+                
+                for(const res of results) {
+                    if(res.exists) {
                         validImagesCount++;
                         if(sec.isVideo) {
                             wrapper.innerHTML += `
                             <div class="swiper-slide">
                                 <div class="bg-white/60 dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 rounded-[2rem] p-6 group cursor-pointer hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
                                     <div class="img-presenter flex-1 h-64 md:h-80 relative overflow-hidden group-hover:bg-black/60 transition-colors duration-500">
-                                        <img src="${imgUrl}" class="w-full h-full object-contain filter drop-shadow-xl opacity-100 group-hover:opacity-40 transition duration-500">
+                                        <img src="${res.url}" class="w-full h-full object-contain filter drop-shadow-xl opacity-100 group-hover:opacity-40 transition duration-500">
                                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                                             <div class="w-20 h-20 rounded-full bg-cyan-600/20 flex items-center justify-center backdrop-blur-md border border-cyan-400/50 group-hover:scale-125 group-hover:bg-cyan-500/50 transition-all duration-500 shadow-[0_0_30px_rgba(34,211,238,0.5)]">
                                                 <i class="fas fa-play text-3xl text-white ml-2"></i>
                                             </div>
                                         </div>
                                     </div>
-                                    <h3 class="text-center font-black text-slate-900 dark:text-slate-100 mt-6 mb-2 text-xl">Video Project ${i}</h3>
+                                    <h3 class="text-center font-black text-slate-900 dark:text-slate-100 mt-6 mb-2 text-xl">Video Project ${res.index}</h3>
                                 </div>
                             </div>`;
                         } else {
                             wrapper.innerHTML += `
                             <div class="swiper-slide">
                                 <div class="img-presenter h-[350px] md:h-[600px] group">
-                                    <img src="${imgUrl}" class="w-full h-full object-contain filter drop-shadow-2xl rounded-2xl group-hover:scale-[1.02] transition-transform duration-500">
+                                    <img src="${res.url}" class="w-full h-full object-contain filter drop-shadow-2xl rounded-2xl group-hover:scale-[1.02] transition-transform duration-500">
                                 </div>
                             </div>`;
                         }
-                    } else break; 
+                    }
                 }
 
-                if(validImagesCount > 0) {
-                    document.getElementById(sec.sectionId).classList.remove('hidden');
-                    const swiperConfig = {
-                        loop: validImagesCount > 3,
-                        autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
-                        pagination: { el: `.swiper-pagination-${sec.prefix === 'photo' ? 'personal' : (sec.prefix === 'gd' ? 'graphics' : 'video')}`, clickable: true },
-                    };
-
-                    if(sec.prefix === 'video') new Swiper(".swiper-video", { ...swiperConfig, breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 40 } } });
-                    else if(sec.prefix === 'gd') new Swiper(".swiper-graphics", { ...swiperConfig, breakpoints: { 640: { slidesPerView: 1 }, 1024: { slidesPerView: 2, spaceBetween: 40 } } });
-                    else new Swiper(".swiper-personal", { ...swiperConfig, autoplay: { delay: 4000, disableOnInteraction: false, reverseDirection: true, pauseOnMouseEnter: true }, breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 40 } } });
+                // If NO images uploaded, show a polite placeholder instead of disappearing!
+                if(validImagesCount === 0) {
+                    wrapper.innerHTML = `
+                    <div class="swiper-slide">
+                        <div class="img-presenter h-[300px] flex flex-col items-center justify-center text-center p-10 border-2 border-dashed border-slate-400 dark:border-slate-600 rounded-3xl opacity-60">
+                            <i class="fas fa-image text-5xl text-slate-500 mb-4"></i>
+                            <h3 class="text-lg font-bold text-slate-700 dark:text-slate-300">No Images Uploaded Yet</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Upload <b>${sec.prefix}1.jpg</b> to see it here.</p>
+                        </div>
+                    </div>`;
                 }
+
+                const swiperConfig = {
+                    loop: validImagesCount > 3,
+                    autoplay: validImagesCount > 0 ? { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true } : false,
+                    pagination: { el: `.swiper-pagination-${sec.prefix === 'photo' ? 'personal' : (sec.prefix === 'gd' ? 'graphics' : 'video')}`, clickable: true },
+                    breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 40 } }
+                };
+
+                if(sec.prefix === 'video') new Swiper(".swiper-video", swiperConfig);
+                else if(sec.prefix === 'gd') new Swiper(".swiper-graphics", swiperConfig);
+                else new Swiper(".swiper-personal", swiperConfig);
             }
         }
+
+        // Run the smart loader as soon as the page opens
         loadImages();
     </script>
 </body>
