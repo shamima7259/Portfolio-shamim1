@@ -1,64 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MD SAMIM | Professional Graphic Designer</title>
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS & Configuration for Dark/Light Mode -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { poppins:["'Poppins'", "sans-serif"] }
+                }
+            }
+        }
+    </script>
     
-    <!-- Google Fonts (Poppins) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome for Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
-    <!-- Swiper CSS for Image Slider -->
+    <!-- Swiper CSS for Image Sliders -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-        body { font-family: 'Poppins', sans-serif; }
+        body { font-family: 'Poppins', sans-serif; transition: background-color 0.5s, color 0.5s; }
         
-        /* Custom Scrollbar for Dark Theme */
+        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
 
-        /* Swiper Slider Customization */
-        .swiper-button-next, .swiper-button-prev { color: #10b981 !important; }
-        .swiper-pagination-bullet { background: #94a3b8 !important; }
-        .swiper-pagination-bullet-active { background: #10b981 !important; }
+        /* Glossy Animation */
+        .glass-card {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        
+        /* Video Play Button Overlay Hover */
+        .video-card:hover .play-btn { transform: scale(1.1); color: #10b981; }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-300 antialiased relative overflow-x-hidden">
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 antialiased relative overflow-x-hidden transition-colors duration-500">
 
-    <!-- Background Glowing Shapes -->
-    <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-emerald-500/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
-    <div class="absolute top-[40%] right-[-5%] w-80 h-80 bg-blue-500/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
-    <div class="absolute bottom-[-5%] left-[20%] w-96 h-96 bg-purple-500/15 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+    <!-- Glowing Background Orbs (Changes based on mode) -->
+    <div class="fixed top-[-10%] left-[-10%] w-96 h-96 bg-fuchsia-300/40 dark:bg-emerald-500/20 rounded-full blur-[120px] -z-10 pointer-events-none transition-all duration-700"></div>
+    <div class="fixed top-[40%] right-[-5%] w-80 h-80 bg-cyan-300/40 dark:bg-blue-500/20 rounded-full blur-[120px] -z-10 pointer-events-none transition-all duration-700"></div>
+    <div class="fixed bottom-[-5%] left-[20%] w-96 h-96 bg-amber-300/30 dark:bg-purple-500/20 rounded-full blur-[120px] -z-10 pointer-events-none transition-all duration-700"></div>
 
-    <div class="max-w-6xl mx-auto px-6 py-12">
+    <!-- Theme Toggle Button -->
+    <button onclick="toggleTheme()" class="fixed top-6 right-6 z-50 p-3 rounded-full bg-white/70 dark:bg-slate-800/70 backdrop-blur-md border border-white/50 dark:border-slate-600 shadow-lg hover:scale-110 transition-transform">
+        <i id="theme-icon" class="fas fa-sun text-yellow-500 text-xl dark:text-yellow-400 dark:hidden block"></i>
+        <i class="fas fa-moon text-indigo-400 text-xl hidden dark:block"></i>
+    </button>
+
+    <div class="max-w-6xl mx-auto px-6 py-16">
 
         <!-- Hero / Header Section -->
-        <header class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-3xl p-8 md:p-12 shadow-2xl mb-10 flex flex-col md:flex-row items-center gap-10 hover:border-emerald-500/30 transition-all duration-500">
-            <div class="relative">
-                <div class="absolute inset-0 bg-gradient-to-tr from-emerald-400 to-blue-500 rounded-full blur-md opacity-70"></div>
-                <img src="profile.jpg" alt="Md Samim" class="relative w-48 h-48 rounded-full object-cover border-4 border-slate-800 shadow-xl z-10">
+        <header class="glass-card bg-white/60 dark:bg-slate-800/40 border border-white/60 dark:border-slate-700/50 rounded-3xl p-8 md:p-12 shadow-2xl shadow-cyan-500/10 dark:shadow-emerald-900/20 mb-10 flex flex-col md:flex-row items-center gap-10 hover:border-cyan-300 dark:hover:border-emerald-500/30 transition-all duration-500">
+            <div class="relative group">
+                <div class="absolute inset-0 bg-gradient-to-tr from-cyan-400 to-fuchsia-500 dark:from-emerald-400 dark:to-blue-500 rounded-full blur-lg opacity-60 group-hover:opacity-100 transition duration-500"></div>
+                <img src="profile.jpg" alt="Md Samim" class="relative w-48 h-48 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-xl z-10">
             </div>
             <div class="text-center md:text-left flex-1">
-                <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-2">MD SAMIM</h1>
-                <p class="text-xl md:text-2xl font-medium bg-gradient-to-r from-emerald-400 to-cyan-400 text-transparent bg-clip-text mb-6">Graphic Designer & Gov. Recognized Freelancer</p>
+                <h1 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-2">MD SAMIM</h1>
+                <p class="text-xl md:text-2xl font-semibold bg-gradient-to-r from-fuchsia-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 text-transparent bg-clip-text mb-6">Graphic Designer & Video Editor</p>
                 
-                <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm text-slate-400 mb-6">
-                    <span class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-emerald-400"></i> Homna, Comilla</span>
-                    <span class="flex items-center gap-2"><i class="fas fa-phone text-emerald-400"></i> 01786537259, 01690081808</span>
-                    <a href="mailto:Shamimahmad7259@gmail.com" class="flex items-center gap-2 hover:text-white transition"><i class="fas fa-envelope text-emerald-400"></i> Shamimahmad7259@gmail.com</a>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm font-medium text-slate-600 dark:text-slate-400 mb-6">
+                    <span class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-cyan-500 dark:text-emerald-400"></i> Homna, Comilla</span>
+                    <span class="flex items-center gap-2"><i class="fas fa-phone text-cyan-500 dark:text-emerald-400"></i> 01786537259, 01690081808</span>
+                    <a href="mailto:Shamimahmad7259@gmail.com" class="flex items-center gap-2 hover:text-cyan-600 dark:hover:text-white transition"><i class="fas fa-envelope text-cyan-500 dark:text-emerald-400"></i> Shamimahmad7259@gmail.com</a>
                 </div>
 
                 <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                    <a href="https://www.behance.net/mdsamim91" target="_blank" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-medium rounded-full shadow-lg shadow-blue-500/30 transition-all flex items-center gap-2">
+                    <a href="https://www.behance.net/mdsamim91" target="_blank" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 hover:scale-105 text-white font-medium rounded-full shadow-lg shadow-blue-500/30 transition-all flex items-center gap-2">
                         <i class="fab fa-behance"></i> Behance Portfolio
                     </a>
                 </div>
@@ -66,188 +86,192 @@
         </header>
 
         <!-- Main CV Grid -->
-        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            
             <!-- Left Column: Objective, Skills, Education -->
             <div class="space-y-8 lg:col-span-1">
-                
-                <!-- Career Objective -->
-                <section class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-3xl p-8 shadow-xl hover:border-slate-600 transition-all">
-                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3"><i class="fas fa-bullseye text-emerald-400"></i> Career Objective</h2>
-                    <p class="text-slate-400 text-sm leading-relaxed text-justify">
-                        Motivated creative professional with a strong foundation in graphic design, microstock contribution, and digital media. As a Govt-recognized freelancer, I am actively expanding my skills in video editing, Meta ads, and generative AI. Combining discipline from extensive Islamic studies with creative passion, I aim to add significant value to a dynamic organization.
+                <!-- Objective -->
+                <section class="glass-card bg-white/60 dark:bg-slate-800/40 border border-white/60 dark:border-slate-700/50 rounded-3xl p-8 shadow-xl">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3"><i class="fas fa-bullseye text-cyan-500 dark:text-emerald-400"></i> Career Objective</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed text-justify">
+                        Motivated creative professional with a strong foundation in graphic design, microstock contribution, and digital media. Expanding my skills in video editing, Meta ads, and generative AI. Combining discipline from extensive Islamic studies with creative passion.
                     </p>
                 </section>
 
                 <!-- Skills -->
-                <section class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-3xl p-8 shadow-xl hover:border-slate-600 transition-all">
-                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3"><i class="fas fa-lightbulb text-yellow-400"></i> Skills & Expertise</h2>
+                <section class="glass-card bg-white/60 dark:bg-slate-800/40 border border-white/60 dark:border-slate-700/50 rounded-3xl p-8 shadow-xl">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3"><i class="fas fa-lightbulb text-amber-500"></i> Skills & Expertise</h2>
                     <div class="space-y-4 text-sm">
                         <div>
-                            <h3 class="text-emerald-400 font-medium mb-1">Multimedia</h3>
-                            <p class="text-slate-300">Adobe Illustrator, Photoshop, Video Editing</p>
+                            <h3 class="text-cyan-600 dark:text-emerald-400 font-bold mb-1">Multimedia</h3>
+                            <p class="text-slate-600 dark:text-slate-300 font-medium">Adobe Illustrator, Photoshop, Video Editing</p>
                         </div>
                         <div>
-                            <h3 class="text-emerald-400 font-medium mb-1">Digital Skills</h3>
-                            <p class="text-slate-300">Generative AI (Prompting), Meta Marketing</p>
-                        </div>
-                        <div>
-                            <h3 class="text-emerald-400 font-medium mb-1">Soft Skills</h3>
-                            <p class="text-slate-300">Highly Disciplined, Strong Focus, Quick Learner</p>
+                            <h3 class="text-cyan-600 dark:text-emerald-400 font-bold mb-1">Digital Skills</h3>
+                            <p class="text-slate-600 dark:text-slate-300 font-medium">Generative AI (Prompting), Meta Marketing</p>
                         </div>
                     </div>
                 </section>
-
-                <!-- Languages -->
-                <section class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-3xl p-8 shadow-xl hover:border-slate-600 transition-all">
-                    <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-3"><i class="fas fa-language text-blue-400"></i> Languages</h2>
-                    <ul class="text-sm text-slate-300 space-y-2">
-                        <li><span class="text-emerald-400 font-medium mr-2">Bengali:</span> Native</li>
-                        <li><span class="text-emerald-400 font-medium mr-2">Arabic:</span> Proficient</li>
-                        <li><span class="text-emerald-400 font-medium mr-2">English:</span> Working Proficiency</li>
-                    </ul>
-                </section>
             </div>
 
-            <!-- Right Column: Experience, Education, Recognitions -->
+            <!-- Right Column: Experience, Education -->
             <div class="space-y-8 lg:col-span-2">
-                
-                <!-- Professional Experience -->
-                <section class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-3xl p-8 shadow-xl hover:border-slate-600 transition-all">
-                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"><i class="fas fa-briefcase text-emerald-400"></i> Professional Experience</h2>
+                <!-- Experience -->
+                <section class="glass-card bg-white/60 dark:bg-slate-800/40 border border-white/60 dark:border-slate-700/50 rounded-3xl p-8 shadow-xl">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3"><i class="fas fa-briefcase text-cyan-500 dark:text-emerald-400"></i> Professional Experience</h2>
                     
-                    <div class="relative border-l-2 border-slate-700 pl-6 pb-2">
-                        <div class="absolute w-4 h-4 bg-emerald-500 rounded-full -left-[9px] top-1 shadow-[0_0_10px_#10b981]"></div>
-                        <h3 class="text-xl font-bold text-slate-100">Freelance Graphic Designer & Microstock Contributor</h3>
-                        <p class="text-emerald-400 text-sm font-medium mb-3">Self-Employed | 2022 – Present</p>
-                        <ul class="list-disc list-inside text-slate-400 text-sm space-y-2 leading-relaxed">
-                            <li>Designing high-quality vectors and illustrations for platforms like Freepik & Shutterstock.</li>
-                            <li>Successfully generating foreign remittance by selling digital assets to global clients.</li>
-                            <li>Ensuring all designs meet global trends and strict copyright regulations.</li>
+                    <div class="relative border-l-2 border-cyan-300 dark:border-slate-700 pl-6 pb-4">
+                        <div class="absolute w-4 h-4 bg-cyan-500 dark:bg-emerald-500 rounded-full -left-[9px] top-1 shadow-[0_0_10px_#06b6d4] dark:shadow-[0_0_10px_#10b981]"></div>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">Freelance Graphic Designer</h3>
+                        <p class="text-cyan-600 dark:text-emerald-400 text-sm font-bold mb-3">Self-Employed | 2022 – Present</p>
+                        <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 text-sm font-medium space-y-2">
+                            <li>Designing high-quality vectors for platforms like Freepik & Shutterstock.</li>
+                            <li>Registered Freelancer, Govt. of Bangladesh (ID: F126195488205).</li>
+                        </ul>
+                    </div>
+
+                    <div class="relative border-l-2 border-cyan-300 dark:border-slate-700 pl-6">
+                        <div class="absolute w-4 h-4 bg-cyan-500 dark:bg-emerald-500 rounded-full -left-[9px] top-1 shadow-[0_0_10px_#06b6d4] dark:shadow-[0_0_10px_#10b981]"></div>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">Trainee, Creative Dept.</h3>
+                        <p class="text-cyan-600 dark:text-emerald-400 text-sm font-bold mb-3">As-Sunnah Skill Development Institute | Present</p>
+                        <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 text-sm font-medium space-y-2">
+                            <li>Training in Graphic Design, Video Editing, Meta Ads, and AI.</li>
+                            <li>Candidate for the upcoming NSDA Govt. Certification.</li>
                         </ul>
                     </div>
                 </section>
 
-                <!-- Recognitions & Training -->
-                <section class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-3xl p-8 shadow-xl hover:border-slate-600 transition-all">
-                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"><i class="fas fa-award text-emerald-400"></i> Recognitions & Training</h2>
-                    
-                    <div class="space-y-6">
-                        <div class="bg-slate-900/50 rounded-2xl p-5 border border-slate-700/50">
-                            <h3 class="text-lg font-bold text-slate-100">Registered Freelancer (Graphics)</h3>
-                            <p class="text-emerald-400 text-sm mb-2">Govt. of Bangladesh (ID: F126195488205)</p>
-                            <p class="text-slate-400 text-sm">Officially recognized as a verified earning freelancer for generating foreign remittance.</p>
-                        </div>
-
-                        <div class="bg-slate-900/50 rounded-2xl p-5 border border-slate-700/50">
-                            <h3 class="text-lg font-bold text-slate-100">Trainee, Creative Dept.</h3>
-                            <p class="text-emerald-400 text-sm mb-2">As-Sunnah Skill Development Institute | Present</p>
-                            <ul class="list-disc list-inside text-slate-400 text-sm space-y-1">
-                                <li>Receiving hands-on training in Graphic Design, Video Editing, Meta Ads, and AI Tools.</li>
-                                <li>Registered candidate for the upcoming NSDA Govt. Certification Assessment.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
                 <!-- Education -->
-                <section class="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-3xl p-8 shadow-xl hover:border-slate-600 transition-all">
-                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3"><i class="fas fa-graduation-cap text-emerald-400"></i> Education & Islamic Academic Background</h2>
-                    
+                <section class="glass-card bg-white/60 dark:bg-slate-800/40 border border-white/60 dark:border-slate-700/50 rounded-3xl p-8 shadow-xl">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3"><i class="fas fa-graduation-cap text-cyan-500 dark:text-emerald-400"></i> Education & Islamic Background</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-700/50">
-                            <h4 class="text-white font-medium">Dept. of Ifta (Islamic Jurisprudence)</h4>
-                            <p class="text-slate-400 text-xs mt-1">Markazur Rashid Lil Fikril Islami Dhaka (Currently Enrolled)</p>
+                        <div class="bg-white/50 dark:bg-slate-900/50 p-4 rounded-xl border border-white/80 dark:border-slate-700/50 shadow-sm">
+                            <h4 class="text-slate-800 dark:text-white font-bold">Dept. of Ifta (Islamic Jurisprudence)</h4>
+                            <p class="text-slate-500 dark:text-slate-400 text-xs font-medium mt-1">Markazur Rashid Lil Fikril Islami (Enrolled)</p>
                         </div>
-                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-700/50">
-                            <h4 class="text-white font-medium">Dawra-e-Hadith (Master's Eqv.)</h4>
-                            <p class="text-slate-400 text-xs mt-1">Jamia Islamia Darul Uloom Madania (Expected 2026)</p>
+                        <div class="bg-white/50 dark:bg-slate-900/50 p-4 rounded-xl border border-white/80 dark:border-slate-700/50 shadow-sm">
+                            <h4 class="text-slate-800 dark:text-white font-bold">Dawra-e-Hadith (Master's Eqv.)</h4>
+                            <p class="text-slate-500 dark:text-slate-400 text-xs font-medium mt-1">Jamia Islamia Darul Uloom (Expected 2026)</p>
                         </div>
-                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-700/50 md:col-span-2">
-                            <h4 class="text-white font-medium flex items-center gap-2"><i class="fas fa-book-open text-emerald-400"></i> Hifz-ul-Quran</h4>
-                            <p class="text-slate-400 text-xs mt-1">Completed in 2017</p>
+                        <div class="bg-white/50 dark:bg-slate-900/50 p-4 rounded-xl border border-white/80 dark:border-slate-700/50 shadow-sm md:col-span-2 flex items-center gap-3">
+                            <i class="fas fa-book-quran text-2xl text-cyan-600 dark:text-emerald-400"></i>
+                            <div>
+                                <h4 class="text-slate-800 dark:text-white font-bold">Hifz-ul-Quran</h4>
+                                <p class="text-slate-500 dark:text-slate-400 text-xs font-medium">Completed in 2017</p>
+                            </div>
                         </div>
                     </div>
                 </section>
-
             </div>
         </main>
 
-        <!-- Portfolio Slider Section (NEW) -->
-        <section class="mt-12 bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-3xl p-8 shadow-xl">
-            <div class="flex justify-between items-end mb-6">
-                <div>
-                    <h2 class="text-2xl font-bold text-white flex items-center gap-3"><i class="fas fa-paint-brush text-emerald-400"></i> Featured Portfolio</h2>
-                    <p class="text-slate-400 text-sm mt-1">Swipe to see my latest graphic design works</p>
+        <!-- SECTION 1: Graphic Design Works -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center flex items-center justify-center gap-3"><i class="fas fa-paint-brush text-fuchsia-500 dark:text-emerald-400"></i> Graphic Design Portfolio</h2>
+            <div class="glass-card bg-white/60 dark:bg-slate-800/40 border border-white/60 dark:border-slate-700/50 rounded-3xl p-6 shadow-xl">
+                <!-- Graphics Swiper -->
+                <div class="swiper swiper-graphics rounded-2xl overflow-hidden">
+                    <div class="swiper-wrapper pb-12">
+                        <div class="swiper-slide"><img src="gd1.jpg" alt="Design 1" class="w-full h-72 md:h-96 object-cover rounded-xl border border-white/50 dark:border-slate-700/50 shadow-md"></div>
+                        <div class="swiper-slide"><img src="gd2.jpg" alt="Design 2" class="w-full h-72 md:h-96 object-cover rounded-xl border border-white/50 dark:border-slate-700/50 shadow-md"></div>
+                        <div class="swiper-slide"><img src="gd3.jpg" alt="Design 3" class="w-full h-72 md:h-96 object-cover rounded-xl border border-white/50 dark:border-slate-700/50 shadow-md"></div>
+                        <div class="swiper-slide"><img src="gd4.jpg" alt="Design 4" class="w-full h-72 md:h-96 object-cover rounded-xl border border-white/50 dark:border-slate-700/50 shadow-md"></div>
+                    </div>
+                    <div class="swiper-pagination-graphics text-center"></div>
                 </div>
-                <a href="https://www.behance.net/mdsamim91" target="_blank" class="hidden md:block text-emerald-400 hover:text-emerald-300 text-sm font-medium transition">View All on Behance &rarr;</a>
             </div>
+        </section>
 
-            <!-- Swiper Container -->
-            <div class="swiper mySwiper rounded-2xl overflow-hidden">
-                <div class="swiper-wrapper pb-10">
-                    <!-- Slide 1 -->
-                    <div class="swiper-slide">
-                        <img src="work1.jpg" alt="Portfolio 1" class="w-full h-72 md:h-96 object-cover rounded-xl border border-slate-700/50">
+        <!-- SECTION 2: Video Editing Works -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center flex items-center justify-center gap-3"><i class="fas fa-video text-cyan-500 dark:text-blue-400"></i> Video Editing Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Video Item 1 -->
+                <div class="video-card glass-card bg-white/60 dark:bg-slate-800/40 border border-white/60 dark:border-slate-700/50 rounded-3xl p-4 shadow-xl cursor-pointer relative group">
+                    <div class="relative rounded-xl overflow-hidden shadow-md">
+                        <img src="video1.jpg" alt="Video Thumbnail" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <i class="fas fa-play-circle text-5xl text-white/80 play-btn transition duration-300"></i>
+                        </div>
                     </div>
-                    <!-- Slide 2 -->
-                    <div class="swiper-slide">
-                        <img src="work2.jpg" alt="Portfolio 2" class="w-full h-72 md:h-96 object-cover rounded-xl border border-slate-700/50">
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="swiper-slide">
-                        <img src="work3.jpg" alt="Portfolio 3" class="w-full h-72 md:h-96 object-cover rounded-xl border border-slate-700/50">
-                    </div>
-                    <!-- Slide 4 -->
-                    <div class="swiper-slide">
-                        <img src="work4.jpg" alt="Portfolio 4" class="w-full h-72 md:h-96 object-cover rounded-xl border border-slate-700/50">
-                    </div>
-                    <!-- Add more slides here if you want -->
-                    <div class="swiper-slide">
-                        <img src="slide1.jpg" alt="Portfolio 5" class="w-full h-72 md:h-96 object-cover rounded-xl border border-slate-700/50">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="slide2.jpg" alt="Portfolio 6" class="w-full h-72 md:h-96 object-cover rounded-xl border border-slate-700/50">
-                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-4 text-center">Promotional Video Ad</h3>
                 </div>
-                <!-- Add Pagination & Navigation -->
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <!-- Video Item 2 -->
+                <div class="video-card glass-card bg-white/60 dark:bg-slate-800/40 border border-white/60 dark:border-slate-700/50 rounded-3xl p-4 shadow-xl cursor-pointer relative group">
+                    <div class="relative rounded-xl overflow-hidden shadow-md">
+                        <img src="video2.jpg" alt="Video Thumbnail" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <i class="fas fa-play-circle text-5xl text-white/80 play-btn transition duration-300"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-4 text-center">Islamic WAZ Editing</h3>
+                </div>
+                <!-- Video Item 3 -->
+                <div class="video-card glass-card bg-white/60 dark:bg-slate-800/40 border border-white/60 dark:border-slate-700/50 rounded-3xl p-4 shadow-xl cursor-pointer relative group">
+                    <div class="relative rounded-xl overflow-hidden shadow-md">
+                        <img src="video3.jpg" alt="Video Thumbnail" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <i class="fas fa-play-circle text-5xl text-white/80 play-btn transition duration-300"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 dark:text-white mt-4 text-center">Social Media Reels</h3>
+                </div>
             </div>
-            
-            <div class="mt-6 text-center md:hidden">
-                <a href="https://www.behance.net/mdsamim91" target="_blank" class="text-emerald-400 hover:text-emerald-300 text-sm font-medium transition">View All on Behance &rarr;</a>
+        </section>
+
+        <!-- SECTION 3: Personal Photos / Gallery -->
+        <section>
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center flex items-center justify-center gap-3"><i class="fas fa-camera-retro text-amber-500"></i> Personal Gallery</h2>
+            <div class="glass-card bg-white/60 dark:bg-slate-800/40 border border-white/60 dark:border-slate-700/50 rounded-3xl p-6 shadow-xl">
+                <!-- Personal Swiper -->
+                <div class="swiper swiper-personal rounded-2xl overflow-hidden">
+                    <div class="swiper-wrapper pb-12">
+                        <div class="swiper-slide"><img src="photo1.jpg" alt="Personal Photo 1" class="w-full h-72 md:h-96 object-cover rounded-xl border border-white/50 dark:border-slate-700/50 shadow-md"></div>
+                        <div class="swiper-slide"><img src="photo2.jpg" alt="Personal Photo 2" class="w-full h-72 md:h-96 object-cover rounded-xl border border-white/50 dark:border-slate-700/50 shadow-md"></div>
+                        <div class="swiper-slide"><img src="photo3.jpg" alt="Personal Photo 3" class="w-full h-72 md:h-96 object-cover rounded-xl border border-white/50 dark:border-slate-700/50 shadow-md"></div>
+                    </div>
+                    <div class="swiper-pagination-personal text-center"></div>
+                </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="mt-12 text-center border-t border-slate-700/50 pt-6 pb-2">
-            <p class="text-slate-500 text-sm">&copy; 2026 MD SAMIM. All Rights Reserved.</p>
+        <footer class="mt-16 text-center pt-6 pb-4">
+            <p class="text-slate-500 font-medium text-sm">&copy; 2026 MD SAMIM. Built with <i class="fas fa-heart text-red-500"></i> Passion.</p>
         </footer>
 
     </div>
 
-    <!-- Swiper JS Script -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Initialize Swiper
-        var swiper = new Swiper(".mySwiper", {
+        // Dark & Light Mode Toggle Script
+        function toggleTheme() {
+            const htmlTag = document.documentElement;
+            htmlTag.classList.toggle('dark');
+        }
+
+        // Swiper for Graphic Design
+        new Swiper(".swiper-graphics", {
             slidesPerView: 1,
             spaceBetween: 20,
             loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
+            autoplay: { delay: 2500, disableOnInteraction: false },
+            pagination: { el: ".swiper-pagination-graphics", clickable: true },
+            breakpoints: {
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
             },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
+        });
+
+        // Swiper for Personal Photos
+        new Swiper(".swiper-personal", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: { delay: 3500, disableOnInteraction: false, reverseDirection: true },
+            pagination: { el: ".swiper-pagination-personal", clickable: true },
             breakpoints: {
                 640: { slidesPerView: 1 },
                 768: { slidesPerView: 2 },
