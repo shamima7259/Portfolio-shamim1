@@ -99,10 +99,8 @@
         .dark .glass-input { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); color: #f1f5f9; }
         .glass-input:focus { outline: none; border-color: #c084fc; box-shadow: 0 0 15px rgba(192, 132, 252, 0.4); }
 
-        /* Hidden Template for PDF Generation */
-        #cv-pdf-template {
-            position: absolute; left: -9999px; top: -9999px; width: 800px; background: white; color: black; font-family: 'Helvetica', 'Arial', sans-serif; padding: 50px;
-        }
+        /* Hide the CV template from view */
+        #cv-pdf-template { display: none; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-darkbg dark:text-slate-200 antialiased relative min-h-screen">
@@ -193,7 +191,7 @@
                     </div>
                 </section>
 
-                <!-- Languages Section (NEW) -->
+                <!-- Languages Section -->
                 <section class="glass-card rounded-[2.5rem] p-10 hover:-translate-y-2 transition-transform duration-300">
                     <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-4 uppercase tracking-wider"><div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><i class="fas fa-language text-blue-600 dark:text-blue-400 text-xl"></i></div> Languages</h2>
                     <ul class="text-base md:text-lg font-medium space-y-4">
@@ -258,8 +256,8 @@
             </div>
         </main>
 
-        <!-- Hidden Portfolios handled by auto-loader -->
-        <section class="mb-32" id="section-graphics">
+        <!-- Portfolios handled by auto-loader -->
+        <section class="mb-32 hidden" id="section-graphics">
             <div class="text-center mb-14">
                 <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-md animate-gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-cyan-500 dark:from-purple-400 dark:via-pink-400 dark:to-cyan-400 pb-2">
                     Graphic Design Showcase
@@ -274,7 +272,7 @@
             </div>
         </section>
 
-        <section class="mb-32" id="section-video">
+        <section class="mb-32 hidden" id="section-video">
             <div class="text-center mb-14">
                 <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-md animate-gradient-text bg-gradient-to-r from-cyan-600 via-blue-500 to-purple-500 dark:from-cyan-400 dark:via-blue-400 dark:to-purple-400 pb-2">
                     Video Editing Projects
@@ -289,7 +287,7 @@
             </div>
         </section>
 
-        <section class="mb-32" id="section-personal">
+        <section class="mb-32 hidden" id="section-personal">
             <div class="text-center mb-14">
                 <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-md animate-gradient-text bg-gradient-to-r from-pink-600 via-rose-500 to-purple-600 dark:from-pink-400 dark:via-rose-400 dark:to-purple-400 pb-2">
                     Personal Gallery
@@ -435,26 +433,42 @@
             localStorage.theme = htmlTag.classList.contains('dark') ? 'dark' : 'light';
         }
 
-        // PDF Generation Function
+        // PDF Generation Fix: Guaranteed rendering without blank pages
         function downloadCV() {
-            const element = document.getElementById('cv-pdf-template');
             const icon = document.getElementById('dl-icon');
             const text = document.getElementById('dl-text');
             
             icon.className = "fas fa-spinner fa-spin text-xl";
             text.innerText = "Generating...";
 
+            // Create temporary element completely isolated but rendered
+            const templateHtml = document.getElementById('cv-pdf-template').innerHTML;
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = templateHtml;
+            tempDiv.style.width = '800px';
+            tempDiv.style.backgroundColor = '#ffffff';
+            tempDiv.style.color = '#000000';
+            tempDiv.style.padding = '50px';
+            tempDiv.style.fontFamily = 'Arial, sans-serif';
+            tempDiv.style.position = 'fixed';
+            tempDiv.style.top = '0';
+            tempDiv.style.left = '0';
+            tempDiv.style.zIndex = '-9999';
+            
+            document.body.appendChild(tempDiv);
+
             const opt = {
                 margin:       0.5,
                 filename:     'MD_SAMIM_CV.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2 },
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                image:        { type: 'jpeg', quality: 1.0 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
             };
 
-            html2pdf().set(opt).from(element).save().then(() => {
+            html2pdf().set(opt).from(tempDiv).save().then(() => {
                 icon.className = "fas fa-download text-xl";
                 text.innerText = "Download CV";
+                document.body.removeChild(tempDiv);
             });
         }
 
@@ -513,7 +527,6 @@
                     }
                 }
 
-                // If NO images uploaded, show a polite placeholder instead of disappearing!
                 if(validImagesCount === 0) {
                     wrapper.innerHTML = `
                     <div class="swiper-slide">
@@ -525,20 +538,22 @@
                     </div>`;
                 }
 
-                const swiperConfig = {
-                    loop: validImagesCount > 3,
-                    autoplay: validImagesCount > 0 ? { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true } : false,
-                    pagination: { el: `.swiper-pagination-${sec.prefix === 'photo' ? 'personal' : (sec.prefix === 'gd' ? 'graphics' : 'video')}`, clickable: true },
-                    breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 40 } }
-                };
+                if(validImagesCount >= 0) {
+                    document.getElementById(sec.sectionId).classList.remove('hidden');
+                    const swiperConfig = {
+                        loop: validImagesCount > 3,
+                        autoplay: validImagesCount > 0 ? { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true } : false,
+                        pagination: { el: `.swiper-pagination-${sec.prefix === 'photo' ? 'personal' : (sec.prefix === 'gd' ? 'graphics' : 'video')}`, clickable: true },
+                        breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 40 } }
+                    };
 
-                if(sec.prefix === 'video') new Swiper(".swiper-video", swiperConfig);
-                else if(sec.prefix === 'gd') new Swiper(".swiper-graphics", swiperConfig);
-                else new Swiper(".swiper-personal", swiperConfig);
+                    if(sec.prefix === 'video') new Swiper(".swiper-video", swiperConfig);
+                    else if(sec.prefix === 'gd') new Swiper(".swiper-graphics", swiperConfig);
+                    else new Swiper(".swiper-personal", swiperConfig);
+                }
             }
         }
 
-        // Run the smart loader as soon as the page opens
         loadImages();
     </script>
 </body>
