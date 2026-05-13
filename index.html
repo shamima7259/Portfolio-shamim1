@@ -66,9 +66,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
-    <!-- html2pdf Library for generating CV -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
     <style>
         body { font-family: 'Poppins', sans-serif; transition: background-color 0.5s ease, color 0.5s ease; overflow-x: hidden; }
         ::-webkit-scrollbar { width: 10px; }
@@ -98,9 +95,6 @@
         .glass-input { background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.5); color: #1e293b; }
         .dark .glass-input { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); color: #f1f5f9; }
         .glass-input:focus { outline: none; border-color: #c084fc; box-shadow: 0 0 15px rgba(192, 132, 252, 0.4); }
-
-        /* Hide the CV template from view */
-        #cv-pdf-template { display: none; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-darkbg dark:text-slate-200 antialiased relative min-h-screen">
@@ -124,7 +118,7 @@
             
             <div class="relative group shrink-0 mt-4 md:mt-0">
                 <div class="absolute inset-[-20px] bg-gradient-to-tr from-purple-600 via-pink-500 to-cyan-500 rounded-full blur-3xl opacity-60 dark:opacity-80 animate-glow-pulse group-hover:opacity-100 transition duration-500"></div>
-                <img src="profile.jpg" alt="Md Samim" class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full object-cover border-[6px] border-white/80 dark:border-white/10 shadow-2xl z-10 transform group-hover:scale-105 transition duration-500">
+                <img src="https://i.postimg.cc/kGbxZLQc/shamim.jpg" alt="Md Samim" class="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full object-cover border-[6px] border-white/80 dark:border-white/10 shadow-2xl z-10 transform group-hover:scale-105 transition duration-500">
             </div>
             
             <div class="text-center md:text-left flex-1 z-10 w-full overflow-hidden">
@@ -145,18 +139,16 @@
                 </div>
 
                 <!-- Buttons & Socials -->
-                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6">
-                    <a href="https://www.behance.net/mdsamim91" target="_blank" class="px-8 py-3.5 md:px-10 md:py-4 text-base md:text-lg bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold rounded-full shadow-[0_10px_30px_rgba(168,85,247,0.4)] hover:shadow-[0_10px_40px_rgba(34,211,238,0.6)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
+                <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 mt-4 md:mt-0">
+                    <a href="https://www.behance.net/mdsamim91" target="_blank" class="w-full sm:w-auto justify-center px-8 py-3.5 md:px-10 md:py-4 text-base md:text-lg bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white font-bold rounded-full shadow-[0_10px_30px_rgba(168,85,247,0.4)] hover:shadow-[0_10px_40px_rgba(34,211,238,0.6)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
                         <i class="fab fa-behance text-2xl"></i> Behance
                     </a>
                     
-                    <button onclick="downloadCV()" class="px-8 py-3.5 md:px-10 md:py-4 text-base md:text-lg bg-white/50 dark:bg-white/10 border border-slate-300 dark:border-white/20 hover:bg-white/80 dark:hover:bg-white/20 text-slate-900 dark:text-white font-bold rounded-full hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
-                        <i class="fas fa-download text-xl" id="dl-icon"></i> <span id="dl-text">Download CV</span>
-                    </button>
-                    
                     <!-- Updated Social Links -->
-                    <a href="https://wa.me/8801786537259" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full glass-card flex items-center justify-center text-green-600 dark:text-green-400 hover:scale-110 hover:text-green-500 transition-all shadow-lg text-2xl"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.facebook.com/shamimahmad259/" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full glass-card flex items-center justify-center text-blue-600 dark:text-blue-400 hover:scale-110 hover:text-blue-500 transition-all shadow-lg text-2xl"><i class="fab fa-facebook-f"></i></a>
+                    <div class="flex justify-center items-center gap-4 w-full sm:w-auto">
+                        <a href="https://wa.me/8801786537259" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full glass-card flex items-center justify-center text-green-600 dark:text-green-400 hover:scale-110 hover:text-green-500 transition-all shadow-lg text-2xl"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/shamimahmad259/" target="_blank" class="w-12 h-12 md:w-14 md:h-14 rounded-full glass-card flex items-center justify-center text-blue-600 dark:text-blue-400 hover:scale-110 hover:text-blue-500 transition-all shadow-lg text-2xl"><i class="fab fa-facebook-f"></i></a>
+                    </div>
                 </div>
 
             </div>
@@ -188,6 +180,11 @@
                             <h3 class="text-cyan-700 dark:text-cyan-400 font-bold mb-2 group-hover:translate-x-3 transition-transform text-xl">Digital Skills</h3>
                             <p class="text-slate-700 dark:text-slate-300 group-hover:translate-x-3 transition-transform">Generative AI, Meta Marketing</p>
                         </div>
+                        <div class="w-full h-[2px] bg-slate-300 dark:bg-white/10"></div>
+                        <div class="group cursor-default">
+                            <h3 class="text-cyan-700 dark:text-cyan-400 font-bold mb-2 group-hover:translate-x-3 transition-transform text-xl">Soft Skills</h3>
+                            <p class="text-slate-700 dark:text-slate-300 group-hover:translate-x-3 transition-transform">Time Management, Communication, Patience, Productivity</p>
+                        </div>
                     </div>
                 </section>
 
@@ -211,20 +208,20 @@
                     <div class="relative border-l-4 border-slate-300 dark:border-white/10 pl-10 pb-12 group">
                         <div class="absolute w-6 h-6 bg-purple-500 rounded-full -left-[15px] top-1.5 shadow-[0_0_20px_#a855f7] group-hover:scale-125 transition-transform duration-300"></div>
                         <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Freelance Graphic Designer</h3>
-                        <p class="text-cyan-700 dark:text-cyan-400 text-lg font-bold mb-5 mt-2">Self-Employed | 2022 – Present</p>
+                        <p class="text-cyan-700 dark:text-cyan-400 text-lg font-bold mb-5 mt-2">Self-Employed | 2023 – Present</p>
                         <ul class="list-disc list-outside ml-6 text-slate-700 dark:text-slate-300 text-base md:text-lg font-medium space-y-3 leading-relaxed">
-                            <li>Designing high-quality vectors for Freepik & Shutterstock.</li>
+                            <li>Designing high-quality vectors for Freepik, Shutterstock, and Adobe Stock.</li>
                             <li>Registered Freelancer, Govt. of Bangladesh (ID: F126195488205).</li>
                         </ul>
                     </div>
 
                     <div class="relative border-l-4 border-transparent pl-10 group">
                         <div class="absolute w-6 h-6 bg-cyan-500 rounded-full -left-[15px] top-1.5 shadow-[0_0_20px_#22d3ee] group-hover:scale-125 transition-transform duration-300"></div>
-                        <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Trainee, Creative Dept.</h3>
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Completed Freelance Training Program</h3>
                         <p class="text-cyan-700 dark:text-cyan-400 text-lg font-bold mb-5 mt-2">As-Sunnah Skill Development Institute | Present</p>
                         <ul class="list-disc list-outside ml-6 text-slate-700 dark:text-slate-300 text-base md:text-lg font-medium space-y-3 leading-relaxed">
-                            <li>Training in Graphic Design, Video Editing, Meta Ads, and AI Tools.</li>
-                            <li>Candidate for the upcoming NSDA Govt. Certification.</li>
+                            <li>Completed training as a freelancer in Graphic Design, Video Editing, Meta Ads, and AI Tools.</li>
+                            <li>Candidate for the upcoming NSDC Govt. Certification.</li>
                         </ul>
                     </div>
                 </section>
@@ -242,6 +239,10 @@
                             <h4 class="text-slate-900 dark:text-slate-100 font-bold text-xl mb-3">Dawra-e-Hadith (Master's Equivalent)</h4>
                             <p class="text-slate-700 dark:text-slate-400 text-base font-medium leading-relaxed">Jamia Islamia Darul Uloom Madania<br><span class="text-cyan-700 dark:text-cyan-400 mt-3 font-bold inline-block bg-cyan-500/10 px-3 py-1.5 rounded-lg">Expected 2026</span></p>
                         </div>
+                        <div class="bg-white/60 dark:bg-white/[0.03] p-8 rounded-[2rem] border border-slate-300 dark:border-white/10 hover:border-blue-400 dark:hover:border-blue-500/50 hover:shadow-2xl transition-all duration-300">
+                            <h4 class="text-slate-900 dark:text-slate-100 font-bold text-xl mb-3">Mishkat (Bachelor's Equivalent)</h4>
+                            <p class="text-slate-700 dark:text-slate-400 text-base font-medium leading-relaxed">Jamia Islamia Darul Uloom Madania<br><span class="text-blue-700 dark:text-blue-400 mt-3 font-bold inline-block bg-blue-500/10 px-3 py-1.5 rounded-lg">Completed 2024-2025</span></p>
+                        </div>
                         <div class="bg-white/60 dark:bg-white/[0.03] p-8 rounded-[2rem] border border-slate-300 dark:border-white/10 hover:border-purple-400 dark:hover:border-purple-500/50 hover:shadow-2xl transition-all duration-300 md:col-span-2 flex items-center gap-6">
                             <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-purple-600 to-cyan-500 flex items-center justify-center shrink-0 shadow-xl">
                                 <i class="fas fa-book-quran text-4xl text-white"></i>
@@ -257,17 +258,43 @@
         </main>
 
         <!-- Portfolios handled by auto-loader -->
-        <section class="mb-32 hidden" id="section-graphics">
+        <section class="mb-32" id="section-graphics">
             <div class="text-center mb-14">
                 <h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight drop-shadow-md animate-gradient-text bg-gradient-to-r from-purple-600 via-pink-500 to-cyan-500 dark:from-purple-400 dark:via-pink-400 dark:to-cyan-400 pb-2">
                     Graphic Design Showcase
                 </h2>
-                <p class="text-slate-700 dark:text-slate-300 font-medium text-lg mt-4">High-quality vectors, illustrations & social media designs</p>
+                <p class="text-slate-700 dark:text-slate-300 font-medium text-lg mt-4 w-full max-w-2xl mx-auto leading-relaxed">
+                    High-quality vectors, illustrations, and social media designs.<br>
+                    <span class="text-sm opacity-80 font-normal">Some designs were recreated as practice pieces and are noted as such.</span>
+                </p>
             </div>
-            <div class="glass-card rounded-[3rem] p-8 md:p-12 relative">
-                <div class="swiper swiper-graphics">
-                    <div class="swiper-wrapper pb-20" id="graphics-wrapper"></div>
-                    <div class="swiper-pagination-graphics text-center"></div>
+            <div class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8 max-w-7xl mx-auto px-4">
+                <div class="break-inside-avoid glass-card p-2 rounded-[2rem]">
+                    <img src="https://i.postimg.cc/sxQ2zLcP/ASSDI-Driving-post.jpg" alt="Graphic Design 1" class="w-full h-auto rounded-[1.5rem] shadow-lg hover:scale-[1.02] transition-transform duration-500">
+                </div>
+                <div class="break-inside-avoid glass-card p-2 rounded-[2rem]">
+                    <img src="https://i.postimg.cc/LXrJJRhB/jafor-01.jpg" alt="Graphic Design 2" class="w-full h-auto rounded-[1.5rem] shadow-lg hover:scale-[1.02] transition-transform duration-500">
+                </div>
+                <div class="break-inside-avoid glass-card p-2 rounded-[2rem]">
+                    <img src="https://i.postimg.cc/WbcDj2Bj/Lettering-final-1.jpg" alt="Graphic Design 3" class="w-full h-auto rounded-[1.5rem] shadow-lg hover:scale-[1.02] transition-transform duration-500">
+                </div>
+                <div class="break-inside-avoid glass-card p-2 rounded-[2rem]">
+                    <img src="https://i.postimg.cc/Cxmdjbzw/Typography-001.jpg" alt="Typography 1" class="w-full h-auto rounded-[1.5rem] shadow-lg hover:scale-[1.02] transition-transform duration-500">
+                </div>
+                <div class="break-inside-avoid glass-card p-2 rounded-[2rem]">
+                    <img src="https://i.postimg.cc/63dXhNYS/Typography-002.jpg" alt="Typography 2" class="w-full h-auto rounded-[1.5rem] shadow-lg hover:scale-[1.02] transition-transform duration-500">
+                </div>
+                <div class="break-inside-avoid glass-card p-2 rounded-[2rem]">
+                    <img src="https://i.postimg.cc/5NPMggS2/Typography-003.jpg" alt="Typography 3" class="w-full h-auto rounded-[1.5rem] shadow-lg hover:scale-[1.02] transition-transform duration-500">
+                </div>
+                <div class="break-inside-avoid glass-card p-2 rounded-[2rem]">
+                    <img src="https://i.postimg.cc/QM7GX3GW/Typography-006.jpg" alt="Typography 6" class="w-full h-auto rounded-[1.5rem] shadow-lg hover:scale-[1.02] transition-transform duration-500">
+                </div>
+                <div class="break-inside-avoid glass-card p-2 rounded-[2rem]">
+                    <img src="https://i.postimg.cc/4yBj84VC/Typography-007.jpg" alt="Typography 7" class="w-full h-auto rounded-[1.5rem] shadow-lg hover:scale-[1.02] transition-transform duration-500">
+                </div>
+                <div class="break-inside-avoid glass-card p-2 rounded-[2rem]">
+                    <img src="https://i.postimg.cc/4xrq2SKP/Typography-008.jpg" alt="Typography 8" class="w-full h-auto rounded-[1.5rem] shadow-lg hover:scale-[1.02] transition-transform duration-500">
                 </div>
             </div>
         </section>
@@ -318,18 +345,18 @@
                         </p>
                         
                         <div class="space-y-6">
-                            <div class="flex items-center gap-5 glass-card p-5 rounded-2xl w-max hover:-translate-y-1 transition-transform">
-                                <div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 text-2xl"><i class="fas fa-envelope"></i></div>
-                                <div>
-                                    <p class="text-sm text-slate-500 dark:text-slate-400 font-bold uppercase">Email Me</p>
-                                    <p class="text-lg font-bold text-slate-800 dark:text-white">Shamimahmad7259@gmail.com</p>
+                            <div class="flex items-center gap-4 sm:gap-5 glass-card p-4 sm:p-5 rounded-2xl w-full sm:w-max hover:-translate-y-1 transition-transform">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 text-xl sm:text-2xl"><i class="fas fa-envelope"></i></div>
+                                <div class="min-w-0 overflow-hidden">
+                                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-bold uppercase truncate">Email Me</p>
+                                    <p class="text-sm sm:text-lg font-bold text-slate-800 dark:text-white truncate">Shamimahmad7259@gmail.com</p>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-5 glass-card p-5 rounded-2xl w-max hover:-translate-y-1 transition-transform">
-                                <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 text-2xl"><i class="fas fa-phone"></i></div>
-                                <div>
-                                    <p class="text-sm text-slate-500 dark:text-slate-400 font-bold uppercase">Call / WhatsApp</p>
-                                    <p class="text-lg font-bold text-slate-800 dark:text-white">+880 1786 537 259</p>
+                            <div class="flex items-center gap-4 sm:gap-5 glass-card p-4 sm:p-5 rounded-2xl w-full sm:w-max hover:-translate-y-1 transition-transform">
+                                <div class="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 text-xl sm:text-2xl"><i class="fas fa-phone"></i></div>
+                                <div class="min-w-0 overflow-hidden">
+                                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-bold uppercase truncate">Call / WhatsApp</p>
+                                    <p class="text-sm sm:text-lg font-bold text-slate-800 dark:text-white truncate">+880 1786 537 259</p>
                                 </div>
                             </div>
                         </div>
@@ -337,7 +364,7 @@
 
                     <div class="glass-card p-8 md:p-10 rounded-[2.5rem] shadow-2xl">
                         <!-- Direct Email Form Setup using FormSubmit -->
-                        <form action="https://formsubmit.co/Shamimahmad7259@gmail.com" method="POST" class="space-y-6">
+                        <form action="https://formsubmit.co/shamimahmad7259@gmail.com" method="POST" class="space-y-6">
                             <input type="hidden" name="_captcha" value="false">
                             <input type="hidden" name="_subject" value="New message from Portfolio Client!">
                             
@@ -377,54 +404,6 @@
 
     </div>
 
-    <!-- Hidden HTML Template for generating PDF CV -->
-    <div id="cv-pdf-template">
-        <h1 style="text-align: center; font-size: 28px; margin-bottom: 5px; color: #111;">MD SAMIM</h1>
-        <p style="text-align: center; font-size: 14px; margin-bottom: 25px; color: #444; border-bottom: 2px solid #ddd; padding-bottom: 15px;">
-            <strong>Graphic Designer & Video Editor</strong><br>
-            Homna, Comilla | 01786537259 | Shamimahmad7259@gmail.com | Behance: behance.net/mdsamim91
-        </p>
-
-        <h2 style="font-size: 18px; color: #111; margin-bottom: 8px;">CAREER OBJECTIVE</h2>
-        <p style="font-size: 13px; color: #444; line-height: 1.6; margin-bottom: 20px;">
-            Motivated creative professional with a strong foundation in graphic design, microstock contribution, and digital media. As a Govt-recognized freelancer, I am actively expanding my skills in video editing, Meta ads, and generative AI. Combining discipline from extensive Islamic studies with creative passion, I aim to add significant value to a dynamic organization.
-        </p>
-
-        <h2 style="font-size: 18px; color: #111; margin-bottom: 8px;">PROFESSIONAL EXPERIENCE</h2>
-        <div style="margin-bottom: 20px;">
-            <p style="font-size: 14px; margin: 0;"><strong>Freelance Graphic Designer</strong></p>
-            <p style="font-size: 13px; color: #666; margin: 2px 0 8px 0;">Self-Employed | 2022 – Present</p>
-            <ul style="font-size: 13px; color: #444; padding-left: 20px; line-height: 1.5; margin: 0;">
-                <li>Designing high-quality vectors for platforms like Freepik & Shutterstock.</li>
-                <li>Successfully generating foreign remittance by selling digital assets to global clients.</li>
-                <li>Registered Freelancer, Govt. of Bangladesh (ID: F126195488205).</li>
-            </ul>
-        </div>
-        <div style="margin-bottom: 20px;">
-            <p style="font-size: 14px; margin: 0;"><strong>Trainee, Creative Dept.</strong></p>
-            <p style="font-size: 13px; color: #666; margin: 2px 0 8px 0;">As-Sunnah Skill Development Institute | Present</p>
-            <ul style="font-size: 13px; color: #444; padding-left: 20px; line-height: 1.5; margin: 0;">
-                <li>Receiving hands-on training in Graphic Design, Video Editing, Meta Ads, and AI Tools.</li>
-                <li>Registered candidate for the upcoming NSDA Govt. Certification Assessment.</li>
-            </ul>
-        </div>
-
-        <h2 style="font-size: 18px; color: #111; margin-bottom: 8px;">EDUCATION & ISLAMIC ACADEMIC BACKGROUND</h2>
-        <ul style="font-size: 13px; color: #444; padding-left: 20px; line-height: 1.6; margin-bottom: 20px;">
-            <li><strong>Dept. of Ifta (Islamic Jurisprudence):</strong> Markazur Rashid Lil Fikril Islami Dhaka (Currently Enrolled)</li>
-            <li><strong>Dawra-e-Hadith (Master's Equivalent):</strong> Jamia Islamia Darul Uloom Madania (Expected 2026)</li>
-            <li><strong>Hifz-ul-Quran:</strong> Successfully Completed in 2017</li>
-        </ul>
-
-        <h2 style="font-size: 18px; color: #111; margin-bottom: 8px;">SKILLS & LANGUAGES</h2>
-        <div style="font-size: 13px; color: #444; line-height: 1.6;">
-            <p style="margin: 0;"><strong>Multimedia:</strong> Adobe Illustrator, Photoshop, Video Editing.</p>
-            <p style="margin: 0;"><strong>Digital Skills:</strong> Generative AI (Prompting), Meta Marketing.</p>
-            <p style="margin: 0;"><strong>Soft Skills:</strong> Highly Disciplined, Strong Focus, Quick Learner.</p>
-            <p style="margin-top: 10px;"><strong>Languages:</strong> Bengali (Native), Arabic (Proficient), English (Working Proficiency).</p>
-        </div>
-    </div>
-
     <!-- Scripts -->
     <script>
         function toggleTheme() {
@@ -433,49 +412,9 @@
             localStorage.theme = htmlTag.classList.contains('dark') ? 'dark' : 'light';
         }
 
-        // PDF Generation Fix: Guaranteed rendering without blank pages
-        function downloadCV() {
-            const icon = document.getElementById('dl-icon');
-            const text = document.getElementById('dl-text');
-            
-            icon.className = "fas fa-spinner fa-spin text-xl";
-            text.innerText = "Generating...";
-
-            // Create temporary element completely isolated but rendered
-            const templateHtml = document.getElementById('cv-pdf-template').innerHTML;
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = templateHtml;
-            tempDiv.style.width = '800px';
-            tempDiv.style.backgroundColor = '#ffffff';
-            tempDiv.style.color = '#000000';
-            tempDiv.style.padding = '50px';
-            tempDiv.style.fontFamily = 'Arial, sans-serif';
-            tempDiv.style.position = 'fixed';
-            tempDiv.style.top = '0';
-            tempDiv.style.left = '0';
-            tempDiv.style.zIndex = '-9999';
-            
-            document.body.appendChild(tempDiv);
-
-            const opt = {
-                margin:       0.5,
-                filename:     'MD_SAMIM_CV.pdf',
-                image:        { type: 'jpeg', quality: 1.0 },
-                html2canvas:  { scale: 2, useCORS: true },
-                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-            };
-
-            html2pdf().set(opt).from(tempDiv).save().then(() => {
-                icon.className = "fas fa-download text-xl";
-                text.innerText = "Download CV";
-                document.body.removeChild(tempDiv);
-            });
-        }
-
         // Advanced Smart Image Loader
         async function loadImages() {
             const sections =[
-                { id: 'graphics-wrapper', sectionId: 'section-graphics', prefix: 'gd', isVideo: false },
                 { id: 'video-wrapper', sectionId: 'section-video', prefix: 'video', isVideo: true },
                 { id: 'personal-wrapper', sectionId: 'section-personal', prefix: 'photo', isVideo: false }
             ];
